@@ -2,5 +2,5 @@
 
 public class Customer
 {
-    public required PersonalInformation PersonalInformation { get; set; }
+    public virtual required PersonalInformation PersonalInformation { get; set; }
 }
