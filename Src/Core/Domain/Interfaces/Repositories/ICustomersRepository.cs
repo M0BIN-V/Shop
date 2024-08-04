@@ -1,6 +1,9 @@
-﻿namespace Domain.Interfaces.Repositories;
+﻿using Domain.Entities;
+using Domain.Interfaces.Repositories.Common;
 
-public interface ICustomersRepository
+namespace Domain.Interfaces.Repositories;
+
+public interface ICustomersRepository : IPersonRoleEntityRepository<Customer>
 {
 
 }
