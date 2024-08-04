@@ -1,6 +1,5 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Entities.Common;
 
-public class Customer
-{
-    public virtual required PersonalInformation PersonalInformation { get; set; }
-}
+namespace Domain.Entities;
+
+public class Customer : PersonRoleEntityBase;
