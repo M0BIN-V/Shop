@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities.Common;
 
-public class EntityBase
+public abstract class EntityBase
 {
     public virtual long Id { get; set; }
 }

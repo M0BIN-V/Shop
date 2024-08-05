@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities.Common;
 
-public abstract class PersonRoleEntityBase
+public abstract class PersonRoleEntityBase : EntityBase
 {
-    public required PersonalInformation PersonalInformation { get; set; }
+    public virtual required PersonalInformation PersonalInformation { get; set; }
 }
