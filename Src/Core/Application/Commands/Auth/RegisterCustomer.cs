@@ -1,4 +1,5 @@
-﻿using Application.Common.Dtos;
+﻿using Domain.Entities;
+using Domain.Errors;
 using Domain.Interfaces.Persistence.Repositories.Read;
 using Domain.Interfaces.Persistence.Repositories.Write;
 using Domain.ValueObjects;
@@ -7,9 +8,9 @@ using Resulver;
 
 namespace Application.Commands.Auth;
 
-public record RegisterCustomerCommand(PhoneNumber PhoneNumber) : IRequest<Result<ViewRegisterResult>>;
+public record RegisterCustomerCommand(PhoneNumber PhoneNumber) : IRequest<Result>;
 
-public class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCommand, Result<ViewRegisterResult>>
+internal class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCommand, Result>
 {
     IWriteCustomersRepository _writeCustomers;
     IReadCustomersRepository _readCustomers;
@@ -20,10 +21,24 @@ public class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCo
         _readCustomers = readCustomers;
     }
 
-    public Task<Result<ViewRegisterResult>> Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
+    public Task<Result> Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
     {
-        var customer = _readCustomers.Get(request.PhoneNumber);
+        if (_readCustomers.Exists(request.PhoneNumber))
+        {
+            var error = new CustomerAlreadyExistsError();
+            return new Result(error);
+        }
 
-        throw new NotImplementedException();
+        var newCustomer = new Customer
+        {
+            PersonalInformation = new()
+            {
+                PhoneNumber = request.PhoneNumber
+            }
+        };
+
+        _writeCustomers.Add(newCustomer);
+
+        return new Result("Customer registered successfully");
     }
 }
