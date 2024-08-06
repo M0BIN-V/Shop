@@ -8,7 +8,7 @@ namespace Persistence.Repositories.Read.Common;
 internal abstract class ReadPersonRoleRepository<TPerson> : ReadRepositoryBase<TPerson>, IReadPersonRoleEntityRepository<TPerson>
     where TPerson : PersonRoleEntityBase
 {
-    public ReadPersonRoleRepository(ReadDbContext context) : base(context) { }
+    protected ReadPersonRoleRepository(ReadDbContext context) : base(context) { }
 
     public bool Exists(PhoneNumber phoneNumber)
     {
