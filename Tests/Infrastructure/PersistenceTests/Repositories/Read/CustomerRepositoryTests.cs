@@ -3,49 +3,36 @@ using Domain.Interfaces.Persistence.Repositories.Read;
 using Domain.Interfaces.Persistence.Repositories.Write;
 using Domain.ValueObjects;
 using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Persistence;
+using PersistenceTests.Repositories.Common;
 using PersistenceTests.Repositories.Read.Common;
 
 namespace PersistenceTests.Repositories.Read;
 
 public class CustomerRepositoryTests : IReadPersonRoleRepositoryTests
 {
-    readonly IReadCustomersRepository _readRepository;
-    readonly IWriteCustomersRepository _writeRepository;
-
-    public CustomerRepositoryTests()
-    {
-        var services = new ServiceCollection()
-            .AddReadRepositories(options => options.UseInMemoryDatabase("InMemoryDb"))
-            .AddWriteRepositories(options => options.UseInMemoryDatabase("InMemoryDb"))
-            .BuildServiceProvider();
-
-        _readRepository = services
-            .GetRequiredService<IReadCustomersRepository>();
-
-        _writeRepository = services
-            .GetRequiredService<IWriteCustomersRepository>();
-    }
+    #region GetById
 
     [Fact]
-    public void GetById()
+    public void GetById_whenExists()
     {
-        var customer = new Customer()
+        var provider = new RepositoryProvider();
+        var readRepository = provider.Get<IReadCustomersRepository>();
+        var writeRepository = provider.Get<IWriteCustomersRepository>();
+
+        var customer = new Customer
         {
             PersonalInformation = new()
             {
                 PhoneNumber = new()
                 {
-                    Value = "09136970284"
+                    Value = "09665555987"
                 }
             }
         };
 
-        _writeRepository.Add(customer);
+        writeRepository.Add(customer);
 
-        var result = _readRepository.Get(customer.Id);
+        var result = readRepository.Get(customer.Id);
 
         result
             .Should()
@@ -58,17 +45,33 @@ public class CustomerRepositoryTests : IReadPersonRoleRepositoryTests
     }
 
     [Fact]
-    public void GetByPhoneNumber()
+    public void GetById_whenNotExists()
     {
+        var repo = new RepositoryProvider().Get<IReadCustomersRepository>();
+
+        repo.Get(1)
+            .Should()
+            .BeNull();
+    }
+    #endregion
+
+    #region GetByPhoneNumber
+    [Fact]
+    public void GetByPhoneNumber_WhenExists()
+    {
+        var provider = new RepositoryProvider();
+        var readRepository = provider.Get<IReadCustomersRepository>();
+        var writeRepository = provider.Get<IWriteCustomersRepository>();
+
         var phoneNumber = new PhoneNumber { Value = "09136470184" };
         var customer = new Customer
         {
             PersonalInformation = new() { PhoneNumber = phoneNumber }
         };
 
-        _writeRepository.Add(customer);
+        writeRepository.Add(customer);
 
-        var result = _readRepository.Get(phoneNumber);
+        var result = readRepository.Get(phoneNumber);
 
         result
             .Should()
@@ -79,4 +82,52 @@ public class CustomerRepositoryTests : IReadPersonRoleRepositoryTests
             .Should()
             .Be(customer.PersonalInformation.PhoneNumber.Value);
     }
+
+    [Fact]
+    public void GetByPhoneNumber_whenNotExists()
+    {
+        var repo = new RepositoryProvider().Get<IReadCustomersRepository>();
+
+        repo.Get(new PhoneNumber { Value = "09665559856" })
+            .Should()
+            .BeNull();
+    }
+    #endregion
+
+    #region Exists
+    [Fact]
+    public void Exists_whenCustomerExists()
+    {
+        var provider = new RepositoryProvider();
+        var readRepository = provider.Get<IReadCustomersRepository>();
+        var writeRepository = provider.Get<IWriteCustomersRepository>();
+
+        var phoneNumber = new PhoneNumber { Value = "09156970284" };
+
+        var customer = new Customer()
+        {
+            PersonalInformation = new()
+            {
+                PhoneNumber = phoneNumber
+            }
+        };
+
+        writeRepository.Add(customer);
+
+        readRepository.Exists(phoneNumber)
+            .Should()
+            .BeTrue();
+    }
+
+    [Fact]
+    public void Exists_whenCustomerNotExists()
+    {
+        var provider = new RepositoryProvider();
+        var readRepository = provider.Get<IReadCustomersRepository>();
+
+        readRepository.Exists(new PhoneNumber { Value = "09111165555" })
+            .Should()
+            .BeFalse();
+    }
+    #endregion
 }

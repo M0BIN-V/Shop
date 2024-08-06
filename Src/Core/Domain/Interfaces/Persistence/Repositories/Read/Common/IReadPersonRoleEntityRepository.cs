@@ -6,4 +6,5 @@ public interface IReadPersonRoleEntityRepository<TPerson> : IReadRepositoryBase<
     where TPerson : PersonRoleEntityBase
 {
     public TPerson? Get(PhoneNumber phoneNumber);
+    public bool Exists(PhoneNumber phoneNumber);
 }

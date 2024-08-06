@@ -2,5 +2,6 @@
 
 public interface IReadRepositoryBaseTests
 {
-    public void GetById();
+    public void GetById_whenExists();
+    public void GetById_whenNotExists();
 }

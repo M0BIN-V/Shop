@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Src\Core\Domain\Domain.csproj" />
     <ProjectReference Include="..\..\..\Src\Infrastructure\Persistence\Persistence.csproj" />
   </ItemGroup>
 

@@ -2,5 +2,7 @@
 
 public interface IReadPersonRoleRepositoryTests : IReadRepositoryBaseTests
 {
-    public void GetByPhoneNumber();
+    public void GetByPhoneNumber_WhenExists();
+
+    public void GetByPhoneNumber_whenNotExists();
 }
