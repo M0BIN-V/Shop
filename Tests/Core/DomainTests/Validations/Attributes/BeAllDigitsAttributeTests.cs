@@ -7,7 +7,7 @@ public class BeAllDigitsAttributeTests
     readonly BeAllDigitsAttribute _attribute = new();
 
     [Fact]
-    public void InvalidValueTest()
+    public void WithInvalidValue()
     {
         _attribute
             .IsValid("this is 2342 value")
@@ -16,7 +16,7 @@ public class BeAllDigitsAttributeTests
     }
 
     [Fact]
-    public void ValidValueTest()
+    public void WithValidValue()
     {
         _attribute
             .IsValid("this is 2342 value")
