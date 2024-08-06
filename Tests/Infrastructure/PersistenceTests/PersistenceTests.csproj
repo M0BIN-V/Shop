@@ -29,8 +29,4 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Write\Common\" />
-  </ItemGroup>
-
 </Project>

@@ -8,7 +8,7 @@ using PersistenceTests.Repositories.Read.Common;
 
 namespace PersistenceTests.Repositories.Read;
 
-public class CustomerRepositoryTests : IReadPersonRoleRepositoryTests
+public class ReadCustomerRepositoryTests : IReadPersonRoleRepositoryTests
 {
     #region GetById
 
