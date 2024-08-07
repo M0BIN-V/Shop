@@ -5,20 +5,27 @@ using Domain.ValueObjects;
 using FluentAssertions;
 using PersistenceTests.Repositories.Common;
 using PersistenceTests.Repositories.Read.Common;
+using Xunit.Abstractions;
 
 namespace PersistenceTests.Repositories.Read;
 
 public class ReadCustomerRepositoryTests : IReadPersonRoleRepositoryTests
 {
-    #region GetById
+    readonly IReadCustomersRepository _readRepository;
+    readonly IWriteCustomersRepository _writeRepository;
+
+    public ReadCustomerRepositoryTests(ITestOutputHelper output)
+    {
+        var provider = new RepositoryProvider();
+        _readRepository = provider.Get<IReadCustomersRepository>();
+        _writeRepository = provider.Get<IWriteCustomersRepository>();
+
+        output.WriteLine(provider.DataBaseId);
+    }
 
     [Fact]
     public void GetById_whenExists()
     {
-        var provider = new RepositoryProvider();
-        var readRepository = provider.Get<IReadCustomersRepository>();
-        var writeRepository = provider.Get<IWriteCustomersRepository>();
-
         var customer = new Customer
         {
             PersonalInformation = new()
@@ -30,9 +37,9 @@ public class ReadCustomerRepositoryTests : IReadPersonRoleRepositoryTests
             }
         };
 
-        writeRepository.Add(customer);
+        _writeRepository.Add(customer);
 
-        var result = readRepository.Get(customer.Id);
+        var result = _readRepository.Get(customer.Id);
 
         result
             .Should()
@@ -47,31 +54,23 @@ public class ReadCustomerRepositoryTests : IReadPersonRoleRepositoryTests
     [Fact]
     public void GetById_whenNotExists()
     {
-        var repo = new RepositoryProvider().Get<IReadCustomersRepository>();
-
-        repo.Get(1)
+        _readRepository.Get(1)
             .Should()
             .BeNull();
     }
-    #endregion
 
-    #region GetByPhoneNumber
     [Fact]
     public void GetByPhoneNumber_WhenExists()
     {
-        var provider = new RepositoryProvider();
-        var readRepository = provider.Get<IReadCustomersRepository>();
-        var writeRepository = provider.Get<IWriteCustomersRepository>();
-
         var phoneNumber = new PhoneNumber { Value = "09136470184" };
         var customer = new Customer
         {
             PersonalInformation = new() { PhoneNumber = phoneNumber }
         };
 
-        writeRepository.Add(customer);
+        _writeRepository.Add(customer);
 
-        var result = readRepository.Get(phoneNumber);
+        var result = _readRepository.Get(phoneNumber);
 
         result
             .Should()
@@ -86,22 +85,14 @@ public class ReadCustomerRepositoryTests : IReadPersonRoleRepositoryTests
     [Fact]
     public void GetByPhoneNumber_whenNotExists()
     {
-        var repo = new RepositoryProvider().Get<IReadCustomersRepository>();
-
-        repo.Get(new PhoneNumber { Value = "09665559856" })
+        _readRepository.Get(new PhoneNumber { Value = "09665559856" })
             .Should()
             .BeNull();
     }
-    #endregion
 
-    #region Exists
     [Fact]
     public void Exists_whenCustomerExists()
     {
-        var provider = new RepositoryProvider();
-        var readRepository = provider.Get<IReadCustomersRepository>();
-        var writeRepository = provider.Get<IWriteCustomersRepository>();
-
         var phoneNumber = new PhoneNumber { Value = "09156970284" };
 
         var customer = new Customer()
@@ -112,9 +103,9 @@ public class ReadCustomerRepositoryTests : IReadPersonRoleRepositoryTests
             }
         };
 
-        writeRepository.Add(customer);
+        _writeRepository.Add(customer);
 
-        readRepository.Exists(phoneNumber)
+        _readRepository.Exists(phoneNumber)
             .Should()
             .BeTrue();
     }
@@ -122,12 +113,8 @@ public class ReadCustomerRepositoryTests : IReadPersonRoleRepositoryTests
     [Fact]
     public void Exists_whenCustomerNotExists()
     {
-        var provider = new RepositoryProvider();
-        var readRepository = provider.Get<IReadCustomersRepository>();
-
-        readRepository.Exists(new PhoneNumber { Value = "09111165555" })
+        _readRepository.Exists(new PhoneNumber { Value = "09111165555" })
             .Should()
             .BeFalse();
     }
-    #endregion
 }
