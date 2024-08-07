@@ -19,8 +19,8 @@ public class BeAllDigitsAttributeTests
     public void WithValidValue()
     {
         _attribute
-            .IsValid("this is 2342 value")
+            .IsValid("12455")
             .Should()
-            .BeFalse();
+            .BeTrue();
     }
 }
