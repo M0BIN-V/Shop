@@ -1,4 +1,4 @@
-﻿namespace Api;
+﻿namespace Api.Config;
 
 public static class DependencyInjection
 {
@@ -6,7 +6,8 @@ public static class DependencyInjection
     {
         builder.Services
 
-            .AddEndpointsApiExplorer();
+            .AddEndpointsApiExplorer()
+            .AddGraphQLServer();
 
         return builder;
     }
