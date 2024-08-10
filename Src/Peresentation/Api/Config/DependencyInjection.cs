@@ -1,4 +1,10 @@
-﻿namespace Api.Config;
+﻿using Api.GraphQl;
+using Api.GraphQl.Mutations;
+using Application;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
+
+namespace Api.Config;
 
 public static class DependencyInjection
 {
@@ -11,7 +17,10 @@ public static class DependencyInjection
             .AddPersistence(builder.Configuration)
 
             .AddEndpointsApiExplorer()
-            .AddGraphQLServer();
+
+            .AddGraphQLServer()
+            .AddQueryType<RootQuery>()
+            .AddMutationType<RootMutation>();
 
         return builder;
     }
