@@ -6,6 +6,12 @@ public static class PipeLine
     {
         app.UseHttpsRedirection();
 
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
         return app;
     }
 }
