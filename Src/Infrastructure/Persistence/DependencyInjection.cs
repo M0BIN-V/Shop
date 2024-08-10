@@ -15,7 +15,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<ReadDbContext>(optionsAction);
 
-        services.AddSingleton<IReadCustomersRepository, ReadCustomersRepository>();
+        services.AddTransient<IReadCustomersRepository, ReadCustomersRepository>();
 
         return services;
     }
@@ -25,7 +25,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<WriteDbContext>(optionsAction);
 
-        services.AddSingleton<IWriteCustomersRepository, WriteCustomerRepository>();
+        services.AddTransient<IWriteCustomersRepository, WriteCustomerRepository>();
 
         return services;
     }
