@@ -1,9 +1,9 @@
-﻿using Domain.Entities.Common;
-using Domain.Interfaces.Persistence.Repositories.Read.Common;
+﻿using Domain.Entities.Abstractions;
+using Domain.Interfaces.Persistence.Repositories.Read.Abstractions;
 using Persistence.DbContexts;
-using Persistence.Repositories.Common;
+using Persistence.Repositories.Abstractions;
 
-namespace Persistence.Repositories.Read.Common;
+namespace Persistence.Repositories.Read.Abstractions;
 
 internal abstract class ReadRepositoryBase<TEntity> : RepositoryBase<TEntity>, IReadRepositoryBase<TEntity>
     where TEntity : EntityBase

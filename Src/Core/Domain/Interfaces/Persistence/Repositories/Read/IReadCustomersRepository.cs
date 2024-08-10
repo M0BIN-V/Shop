@@ -1,9 +1,6 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Persistence.Repositories.Read.Common;
+using Domain.Interfaces.Persistence.Repositories.Read.Abstractions;
 
 namespace Domain.Interfaces.Persistence.Repositories.Read;
 
-public interface IReadCustomersRepository : IReadPersonRoleEntityRepository<Customer>
-{
-
-}
+public interface IReadCustomersRepository : IReadPersonRoleEntityRepository<Customer>;

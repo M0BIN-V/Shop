@@ -1,9 +1,9 @@
-﻿using Domain.Interfaces.Persistence.Repositories.Common;
+﻿using Domain.Interfaces.Persistence.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence;
 
-namespace PersistenceTests.Repositories.Common;
+namespace PersistenceTests.Repositories.Abstractions;
 
 internal class RepositoryProvider
 {

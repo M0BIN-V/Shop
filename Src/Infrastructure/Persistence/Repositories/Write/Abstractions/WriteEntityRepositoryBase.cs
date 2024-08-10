@@ -1,9 +1,9 @@
-﻿using Domain.Entities.Common;
-using Domain.Interfaces.Persistence.Repositories.Write.Common;
+﻿using Domain.Entities.Abstractions;
+using Domain.Interfaces.Persistence.Repositories.Write.Abstractions;
 using Persistence.DbContexts;
-using Persistence.Repositories.Common;
+using Persistence.Repositories.Abstractions;
 
-namespace Persistence.Repositories.Write.Common;
+namespace Persistence.Repositories.Write.Abstractions;
 
 internal class WriteEntityRepositoryBase<TEntity> : RepositoryBase<TEntity>, IWriteEntityRepositoryBase<TEntity>
     where TEntity : EntityBase

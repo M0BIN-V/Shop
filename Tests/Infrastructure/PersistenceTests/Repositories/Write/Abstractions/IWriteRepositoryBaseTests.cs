@@ -1,6 +1,6 @@
-﻿using Domain.Entities.Common;
+﻿using Domain.Entities.Abstractions;
 
-namespace PersistenceTests.Repositories.Write.Common;
+namespace PersistenceTests.Repositories.Write.Abstractions;
 
 internal interface IWriteRepositoryBaseTests<TEntity>
     where TEntity : EntityBase

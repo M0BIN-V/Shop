@@ -1,9 +1,8 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Persistence.Repositories.Read;
 using Domain.Interfaces.Persistence.Repositories.Write;
-using FluentAssertions;
-using PersistenceTests.Repositories.Common;
-using PersistenceTests.Repositories.Write.Common;
+using PersistenceTests.Repositories.Abstractions;
+using PersistenceTests.Repositories.Write.Abstractions;
 
 namespace PersistenceTests.Repositories.Write;
 

@@ -2,9 +2,8 @@
 using Domain.Interfaces.Persistence.Repositories.Read;
 using Domain.Interfaces.Persistence.Repositories.Write;
 using Domain.ValueObjects;
-using FluentAssertions;
-using PersistenceTests.Repositories.Common;
-using PersistenceTests.Repositories.Read.Common;
+using PersistenceTests.Repositories.Abstractions;
+using PersistenceTests.Repositories.Read.Abstractions;
 using Xunit.Abstractions;
 
 namespace PersistenceTests.Repositories.Read;

@@ -1,4 +1,4 @@
-﻿namespace PersistenceTests.Repositories.Read.Common;
+﻿namespace PersistenceTests.Repositories.Read.Abstractions;
 
 public interface IReadRepositoryBaseTests
 {

@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.Common;
+﻿namespace Domain.Entities.Abstractions;
 
 public abstract class PersonRoleEntityBase : EntityBase
 {
