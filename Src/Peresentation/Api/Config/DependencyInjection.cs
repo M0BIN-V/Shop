@@ -1,12 +1,13 @@
-﻿namespace Api;
+﻿namespace Api.Config;
 
 public static class DependencyInjection
 {
     public static WebApplicationBuilder AddServices(this WebApplicationBuilder builder)
     {
         builder.Services
-            .AddSwaggerGen()
-            .AddEndpointsApiExplorer();
+
+            .AddEndpointsApiExplorer()
+            .AddGraphQLServer();
 
         return builder;
     }

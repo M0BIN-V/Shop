@@ -1,4 +1,4 @@
-using Api;
+using Api.Config;
 
 WebApplication
     .CreateBuilder(args)
