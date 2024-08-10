@@ -8,12 +8,12 @@ using Resulver;
 
 namespace Application.Commands.Auth;
 
-public record RegisterCustomerCommand(PhoneNumber PhoneNumber) : IRequest<Result>;
+public record RegisterCustomerCommand(PhoneNumber PhoneNumber) : IRequest<Result<Guid>>;
 
-internal class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCommand, Result>
+internal class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCommand, Result<Guid>>
 {
-    IWriteCustomersRepository _writeCustomers;
-    IReadCustomersRepository _readCustomers;
+    readonly IWriteCustomersRepository _writeCustomers;
+    readonly IReadCustomersRepository _readCustomers;
 
     public RegisterCustomerCommandHandler(IReadCustomersRepository readCustomers, IWriteCustomersRepository writeCustomers)
     {
@@ -21,12 +21,12 @@ internal class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomer
         _readCustomers = readCustomers;
     }
 
-    public Task<Result> Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
+    public Task<Result<Guid>> Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
     {
         if (_readCustomers.Exists(request.PhoneNumber))
         {
             var error = new CustomerAlreadyExistsError();
-            return new Result(error);
+            return new Result<Guid>(error);
         }
 
         var newCustomer = new Customer
@@ -39,6 +39,6 @@ internal class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomer
 
         _writeCustomers.Add(newCustomer);
 
-        return new Result("Customer registered successfully");
+        return new Result<Guid>(newCustomer.Code);
     }
 }
