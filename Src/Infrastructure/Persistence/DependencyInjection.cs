@@ -25,7 +25,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<WriteDbContext>(optionsAction);
 
-        services.AddTransient<IWriteCustomersRepository, WriteCustomerRepository>();
+        services.AddTransient<IWriteCustomersRepository, WriteCustomersRepository>();
 
         return services;
     }
