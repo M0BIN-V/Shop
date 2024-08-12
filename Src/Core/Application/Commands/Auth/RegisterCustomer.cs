@@ -1,12 +1,4 @@
-﻿using Domain.Entities;
-using Domain.Errors;
-using Domain.Interfaces.Persistence.Repositories.Read;
-using Domain.Interfaces.Persistence.Repositories.Write;
-using Domain.ValueObjects;
-using MediatR;
-using Resulver;
-
-namespace Application.Commands.Auth;
+﻿namespace Application.Commands.Auth;
 
 public record RegisterCustomerCommand(PhoneNumber PhoneNumber) : IRequest<Result<Guid>>;
 
