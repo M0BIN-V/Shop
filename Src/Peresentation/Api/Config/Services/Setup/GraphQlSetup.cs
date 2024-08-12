@@ -1,5 +1,5 @@
-﻿using Api.GraphQl.Mutations;
-using Api.GraphQl.Queries;
+﻿using Api.Schema.Mutations;
+using Api.Schema.Queries;
 using HotChocolate.Execution.Configuration;
 using System.Reflection;
 

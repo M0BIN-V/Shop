@@ -2,7 +2,7 @@
 using MediatR;
 using Resulver;
 
-namespace Api.GraphQl.Shared;
+namespace Api.Schema.Shared;
 
 public static class ResolverExtensions
 {

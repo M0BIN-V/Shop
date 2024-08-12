@@ -1,7 +1,7 @@
-﻿using Api.GraphQl.Shared;
+﻿using Api.Schema.Shared;
 using Application.Commands.Auth;
 
-namespace Api.GraphQl.Mutations;
+namespace Api.Schema.Mutations;
 
 public class RootMutation;
 

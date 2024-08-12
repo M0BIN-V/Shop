@@ -2,7 +2,7 @@
 using HotChocolate.Resolvers;
 using MediatR;
 
-namespace Api.GraphQl.Shared;
+namespace Api.Schema.Shared;
 
 public class Resolver
 {

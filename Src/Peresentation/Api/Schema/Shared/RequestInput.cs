@@ -1,3 +1,3 @@
-﻿namespace Api.GraphQl.Shared;
+﻿namespace Api.Schema.Shared;
 
 public class RequestInput<TRequest> : InputObjectType<TRequest> { }

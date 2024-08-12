@@ -1,4 +1,4 @@
-﻿namespace Api.GraphQl.Queries;
+﻿namespace Api.Schema.Queries;
 
 public class RootQuery
 {
