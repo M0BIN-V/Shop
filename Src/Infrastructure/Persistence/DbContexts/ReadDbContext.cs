@@ -3,7 +3,7 @@ using Persistence.DbContexts.Common;
 
 namespace Persistence.DbContexts;
 
-internal class ReadDbContext : DbContextBase
+public class ReadDbContext : DbContextBase
 {
     public ReadDbContext() { }
 

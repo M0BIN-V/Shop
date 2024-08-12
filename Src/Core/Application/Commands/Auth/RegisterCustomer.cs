@@ -10,7 +10,7 @@ namespace Application.Commands.Auth;
 
 public record RegisterCustomerCommand(PhoneNumber PhoneNumber) : IRequest<Result<Guid>>;
 
-internal class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCommand, Result<Guid>>
+public class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCommand, Result<Guid>>
 {
     readonly IWriteCustomersRepository _writeCustomers;
     readonly IReadCustomersRepository _readCustomers;

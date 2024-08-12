@@ -4,8 +4,11 @@ using System.Reflection;
 
 namespace Persistence.DbContexts.Common;
 
-internal abstract class DbContextBase : DbContext
+public abstract class DbContextBase : DbContext
 {
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<PersonalInformation> PersonalInformation { get; set; }
+
     protected DbContextBase() { }
 
     public DbContextBase(DbContextOptions dbContextOptions) : base(dbContextOptions) { }

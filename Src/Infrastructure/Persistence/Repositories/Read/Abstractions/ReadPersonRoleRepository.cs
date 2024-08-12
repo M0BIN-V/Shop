@@ -5,7 +5,7 @@ using Persistence.DbContexts;
 
 namespace Persistence.Repositories.Read.Abstractions;
 
-internal abstract class ReadPersonRoleRepository<TPerson> : ReadRepositoryBase<TPerson>, IReadPersonRoleEntityRepository<TPerson>
+public abstract class ReadPersonRoleRepository<TPerson> : ReadRepositoryBase<TPerson>, IReadPersonRoleEntityRepository<TPerson>
     where TPerson : PersonRoleEntityBase
 {
     protected ReadPersonRoleRepository(ReadDbContext context) : base(context) { }

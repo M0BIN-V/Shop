@@ -4,7 +4,7 @@ using Persistence.DbContexts;
 
 namespace Persistence.Repositories.Abstractions;
 
-internal abstract class RepositoryBase<TEntity>
+public abstract class RepositoryBase<TEntity>
 where TEntity : EntityBase
 {
     protected readonly ReadDbContext _context;

@@ -5,7 +5,7 @@ using Persistence.Repositories.Read.Abstractions;
 
 namespace Persistence.Repositories.Read;
 
-internal class ReadCustomersRepository : ReadPersonRoleRepository<Customer>, IReadCustomersRepository
+public class ReadCustomersRepository : ReadPersonRoleRepository<Customer>, IReadCustomersRepository
 {
     public ReadCustomersRepository(ReadDbContext context) : base(context) { }
 }

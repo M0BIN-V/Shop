@@ -5,7 +5,7 @@ using Persistence.Repositories.Abstractions;
 
 namespace Persistence.Repositories.Read.Abstractions;
 
-internal abstract class ReadRepositoryBase<TEntity> : RepositoryBase<TEntity>, IReadRepositoryBase<TEntity>
+public abstract class ReadRepositoryBase<TEntity> : RepositoryBase<TEntity>, IReadRepositoryBase<TEntity>
     where TEntity : EntityBase
 {
     protected ReadRepositoryBase(ReadDbContext context) : base(context) { }
