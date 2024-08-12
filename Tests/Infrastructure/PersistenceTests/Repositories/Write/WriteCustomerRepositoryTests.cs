@@ -1,13 +1,22 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Persistence.Repositories.Read;
-using Domain.Interfaces.Persistence.Repositories.Write;
-using PersistenceTests.Repositories.Abstractions;
+using Persistence.Repositories.Read;
+using Persistence.Repositories.Write;
+using PersistenceTests.Repositories.Common;
 using PersistenceTests.Repositories.Write.Abstractions;
 
 namespace PersistenceTests.Repositories.Write;
 
-public class WriteCustomerRepositoryTests : IWriteRepositoryBaseTests<Customer>
+public class WriteCustomerRepositoryTests : RepositoryBase, IWriteRepositoryBaseTests<Customer>
 {
+    readonly ReadCustomersRepository _readRepository;
+    readonly WriteCustomersRepository _writeRepository;
+
+    public WriteCustomerRepositoryTests()
+    {
+        _readRepository = new ReadCustomersRepository(_readDbContext);
+        _writeRepository = new WriteCustomersRepository(_writeDbContext);
+    }
+
     [Fact]
     public void Add()
     {
@@ -22,13 +31,9 @@ public class WriteCustomerRepositoryTests : IWriteRepositoryBaseTests<Customer>
             }
         };
 
-        var provider = new RepositoryProvider();
-        var writeRepository = provider.Get<IWriteCustomersRepository>();
-        var readRepository = provider.Get<IReadCustomersRepository>();
+        _writeRepository.Add(customer);
 
-        writeRepository.Add(customer);
-
-        readRepository.Exists(customer.PersonalInformation.PhoneNumber)
+        _readRepository.Exists(customer.PersonalInformation.PhoneNumber)
             .Should().BeTrue();
     }
 }

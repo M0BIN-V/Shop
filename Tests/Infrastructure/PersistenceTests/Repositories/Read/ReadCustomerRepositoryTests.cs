@@ -1,25 +1,22 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Persistence.Repositories.Read;
-using Domain.Interfaces.Persistence.Repositories.Write;
 using Domain.ValueObjects;
-using PersistenceTests.Repositories.Abstractions;
+using Persistence.Repositories.Read;
+using Persistence.Repositories.Write;
+using PersistenceTests.Repositories.Common;
 using PersistenceTests.Repositories.Read.Abstractions;
-using Xunit.Abstractions;
 
 namespace PersistenceTests.Repositories.Read;
 
-public class ReadCustomerRepositoryTests : IReadPersonRoleRepositoryTests
+public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleRepositoryTests
 {
-    readonly IReadCustomersRepository _readRepository;
-    readonly IWriteCustomersRepository _writeRepository;
+    readonly ReadCustomersRepository _readRepository;
 
-    public ReadCustomerRepositoryTests(ITestOutputHelper output)
+    readonly WriteCustomersRepository _writeRepository;
+
+    public ReadCustomerRepositoryTests()
     {
-        var provider = new RepositoryProvider();
-        _readRepository = provider.Get<IReadCustomersRepository>();
-        _writeRepository = provider.Get<IWriteCustomersRepository>();
-
-        output.WriteLine(provider.DataBaseId);
+        _readRepository = new ReadCustomersRepository(_readDbContext);
+        _writeRepository = new WriteCustomersRepository(_writeDbContext);
     }
 
     [Fact]
