@@ -13,10 +13,13 @@ public abstract class DbContextBase : DbContext
 
     public DbContextBase(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
 
-    public DbSet<Customer> Customers { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer();
+        }
+
         optionsBuilder.UseLazyLoadingProxies();
 
         base.OnConfiguring(optionsBuilder);
