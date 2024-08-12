@@ -1,18 +1,19 @@
-﻿using Application.Commands.Auth;
-using MediatR;
+﻿using Api.GraphQl.Shared;
+using Application.Commands.Auth;
 
 namespace Api.GraphQl.Mutations;
 
-public class RootMutation
+public class RootMutation { }
+
+public class RootMutationType : ObjectType<RootMutation>
 {
-    public async Task<Guid> RegisterCustomer(
-        string phoneNumber,
-        [Service] IMediator mediator)
+    protected override void Configure(IObjectTypeDescriptor<RootMutation> descriptor)
     {
-        var request = new RegisterCustomerCommand(PhoneNumber: new PhoneNumber { Value = phoneNumber });
+        descriptor.BindFieldsExplicitly();
 
-        var result = await mediator.Send(request);
+        descriptor.Field("registerCustomer")
+            .ResolveRequest<RegisterCustomerCommand>();
 
-        return result.Content;
+        base.Configure(descriptor);
     }
 }
