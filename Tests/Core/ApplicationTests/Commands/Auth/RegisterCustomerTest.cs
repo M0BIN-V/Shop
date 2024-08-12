@@ -7,18 +7,21 @@ namespace ApplicationTests.Commands.Auth;
 
 public class RegisterCustomerTest
 {
+    readonly Mock<IReadCustomersRepository> _readRepositoryMock = new();
+    readonly Mock<IWriteCustomersRepository> _writeRepositoryMock = new();
+    readonly RegisterCustomerCommandHandler _handler;
+
+    public RegisterCustomerTest()
+    {
+        _handler = new(_readRepositoryMock.Object, _writeRepositoryMock.Object);
+    }
+
     [Fact]
     public async void RegisterCustomerTest_withNewCustomer()
     {
         var request = new RegisterCustomerCommand(new PhoneNumber { Value = "09366656565" });
 
-        var readRepositoryMock = new Mock<IReadCustomersRepository>();
-
-        var writeRepositoryMock = new Mock<IWriteCustomersRepository>();
-
-        var handler = new RegisterCustomerCommandHandler(readRepositoryMock.Object, writeRepositoryMock.Object);
-
-        var result = await handler.Handle(request, CancellationToken.None);
+        var result = await _handler.Handle(request, CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
     }
@@ -28,14 +31,9 @@ public class RegisterCustomerTest
     {
         var request = new RegisterCustomerCommand(new PhoneNumber { Value = "09366656565" });
 
-        var readRepositoryMock = new Mock<IReadCustomersRepository>();
-        readRepositoryMock.Setup(x => x.Exists(request.PhoneNumber)).Returns(true);
+        _readRepositoryMock.Setup(x => x.Exists(request.PhoneNumber)).Returns(true);
 
-        var writeRepositoryMock = new Mock<IWriteCustomersRepository>();
-
-        var handler = new RegisterCustomerCommandHandler(readRepositoryMock.Object, writeRepositoryMock.Object);
-
-        var result = await handler.Handle(request, CancellationToken.None);
+        var result = await _handler.Handle(request, CancellationToken.None);
 
         result.IsSuccess.Should().BeFalse();
     }
