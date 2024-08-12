@@ -6,7 +6,7 @@ namespace Api.GraphQl.Shared;
 
 public class Resolver
 {
-    public async Task<TResultContent?> Resolve<TRequest, TResultContent>(
+    public async Task<TResultContent?> ResolveWithMediator<TRequest, TResultContent>(
         IResolverContext context,
         TRequest request,
         [Service] IMediator mediator)
@@ -20,7 +20,7 @@ public class Resolver
         return result.Content;
     }
 
-    public async Task<string?> Resolve<TRequest>(
+    public async Task<string?> ResolveWithMediator<TRequest>(
         IResolverContext context,
         TRequest request,
         [Service] IMediator mediator)

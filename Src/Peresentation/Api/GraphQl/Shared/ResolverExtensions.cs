@@ -13,7 +13,7 @@ public static class ResolverExtensions
         descriptor.WithRequestArgument<TRequest>();
 
         descriptor.ResolveWith<Resolver>(r => r
-            .Resolve<TRequest, TResultContent>(default!, default!, default!));
+            .ResolveWithMediator<TRequest, TResultContent>(default!, default!, default!));
 
         return descriptor;
     }
@@ -24,7 +24,7 @@ public static class ResolverExtensions
         descriptor.WithRequestArgument<TRequest>();
 
         descriptor.ResolveWith<Resolver>(r => r
-            .Resolve<TRequest>(default!, default!, default!));
+            .ResolveWithMediator<TRequest>(default!, default!, default!));
 
         return descriptor;
     }

@@ -3,7 +3,7 @@ using Application.Commands.Auth;
 
 namespace Api.GraphQl.Mutations;
 
-public class RootMutation { }
+public class RootMutation;
 
 public class RootMutationType : ObjectType<RootMutation>
 {
@@ -12,7 +12,7 @@ public class RootMutationType : ObjectType<RootMutation>
         descriptor.BindFieldsExplicitly();
 
         descriptor.Field("registerCustomer")
-            .ResolveRequest<RegisterCustomerCommand>();
+            .ResolveRequest<RegisterCustomerCommand, Guid>();
 
         base.Configure(descriptor);
     }
