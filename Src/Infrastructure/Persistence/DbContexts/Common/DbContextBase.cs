@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Valobtify.EntityFrameworkCore;
 
 namespace Persistence.DbContexts.Common;
 
@@ -11,7 +12,7 @@ public abstract class DbContextBase : DbContext
 
     protected DbContextBase() { }
 
-    public DbContextBase(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
+    protected DbContextBase(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -27,6 +28,8 @@ public abstract class DbContextBase : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.SetupSingleValueObjects();
+
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         base.OnModelCreating(modelBuilder);
