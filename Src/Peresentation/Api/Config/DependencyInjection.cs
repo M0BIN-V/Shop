@@ -1,7 +1,7 @@
-﻿using Api.Config.Services.Setup;
+﻿using Api.Config.Setup;
 using Application;
 
-namespace Api.Config.Services;
+namespace Api.Config;
 
 public static class DependencyInjection
 {
