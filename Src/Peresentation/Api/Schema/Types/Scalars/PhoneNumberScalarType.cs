@@ -2,10 +2,9 @@
 
 namespace Api.Schema.Types.Scalars;
 
-public class PhoneNumberScalarType : ScalarType<PhoneNumber, StringValueNode>
+public class PhoneNumberScalarType(BindingBehavior bind = BindingBehavior.Explicit) :
+    ScalarType<PhoneNumber, StringValueNode>(nameof(PhoneNumber), bind)
 {
-    public PhoneNumberScalarType(BindingBehavior bind = BindingBehavior.Explicit) : base(nameof(PhoneNumber), bind) { }
-
     public override IValueNode ParseResult(object? resultValue)
     {
         return ParseValue(resultValue);

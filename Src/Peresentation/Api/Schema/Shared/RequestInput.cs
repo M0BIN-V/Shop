@@ -1,3 +1,3 @@
 ﻿namespace Api.Schema.Shared;
 
-public class RequestInput<TRequest> : InputObjectType<TRequest> { }
+public class RequestInput<TRequest> : InputObjectType<TRequest>;
