@@ -13,9 +13,7 @@ public static class DependencyInjection
 
             .AddPersistenceSetup(builder.Configuration)
 
-            .AddEndpointsApiExplorer()
-
-            .AddGraphQlSetup();
+            .AddEndpointsApiExplorer();
 
         return builder;
     }

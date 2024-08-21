@@ -28,7 +28,7 @@ public class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCo
                 PhoneNumber = request.PhoneNumber
             }
         };
-
+        
         _writeCustomers.Add(newCustomer);
 
         return new Result<Guid>(newCustomer.Code);
