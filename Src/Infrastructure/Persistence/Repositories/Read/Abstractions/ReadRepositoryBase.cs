@@ -1,5 +1,4 @@
-﻿using Domain.Entities.Abstractions;
-using Domain.Interfaces.Persistence.Repositories.Read.Abstractions;
+﻿using Domain.Interfaces.Persistence.Repositories.Read.Abstractions;
 using Persistence.DbContexts;
 using Persistence.Repositories.Abstractions;
 
