@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Api.Config.Setup;
+namespace Api.Config.DependencyInjection.Setup;
 
 public static class PersistenceSetup
 {

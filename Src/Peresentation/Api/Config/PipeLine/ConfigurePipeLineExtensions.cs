@@ -1,10 +1,14 @@
-﻿namespace Api.Config;
+﻿using Api.Config.PipeLine.Setup;
 
-public static class PipeLine
+namespace Api.Config.PipeLine;
+
+public static class ConfigurePipeLineExtensions
 {
     public static WebApplication ConfigurePipeLine(this WebApplication app)
     {
         app.UseHttpsRedirection();
+
+        app.MapEndpoints();
 
         return app;
     }

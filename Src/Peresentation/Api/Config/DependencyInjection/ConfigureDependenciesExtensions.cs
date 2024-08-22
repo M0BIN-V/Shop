@@ -1,9 +1,9 @@
-﻿using Api.Config.Setup;
+﻿using Api.Config.DependencyInjection.Setup;
 using Application;
 
-namespace Api.Config;
+namespace Api.Config.DependencyInjection;
 
-public static class DependencyInjection
+public static class ConfigureDependenciesExtensions
 {
     public static WebApplicationBuilder AddServices(this WebApplicationBuilder builder)
     {
@@ -12,6 +12,8 @@ public static class DependencyInjection
             .AddApplicationHandlers()
 
             .AddPersistenceSetup(builder.Configuration)
+
+            .AddEndpoints()
 
             .AddEndpointsApiExplorer();
 

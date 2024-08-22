@@ -1,4 +1,5 @@
-using Api.Config;
+using Api.Config.DependencyInjection;
+using Api.Config.PipeLine;
 
 WebApplication
     .CreateBuilder(args)
