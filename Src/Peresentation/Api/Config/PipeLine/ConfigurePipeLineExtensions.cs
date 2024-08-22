@@ -8,6 +8,12 @@ public static class ConfigurePipeLineExtensions
     {
         app.UseHttpsRedirection();
 
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
         app.MapEndpoints();
 
         return app;

@@ -11,6 +11,8 @@ public static class ConfigureDependenciesExtensions
 
             .AddApplicationHandlers()
 
+            .AddSwaggerGen()
+
             .AddPersistenceSetup(builder.Configuration)
 
             .AddEndpoints()
