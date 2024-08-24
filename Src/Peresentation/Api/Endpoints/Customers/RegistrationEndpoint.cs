@@ -2,13 +2,15 @@
 
 namespace Api.Endpoints.Customers;
 
-public class Registration : ResultBaseEndpoint
+public record RegisterRequest(string phoneNumber);
+
+public class RegistrationEndpoint : ResultBaseEndpoint
 {
     public override void ConfigureEndpoint(IEndpointRouteBuilder builder)
     {
-        builder.MapPost("customers/register", async (IMediator mediator, [FromBody] string phoneNumber) =>
+        builder.MapPost("customers/register", async (IMediator mediator, RegisterRequest request) =>
         {
-            var command = new RegisterCustomerCommand(new PhoneNumber { Value = phoneNumber });
+            var command = new RegisterCustomerCommand(new PhoneNumber { Value = request.phoneNumber });
 
             var result = await mediator.Send(command);
 
