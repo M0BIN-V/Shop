@@ -5,11 +5,11 @@ public abstract class ResultBaseEndpoint : IEndpointBuilder
 {
     public abstract void ConfigureEndpoint(IEndpointRouteBuilder builder);
 
-    protected IResult FromResult(Result result, Func<Result, IResult> successAction)
+    protected IResult FromResult(Result result, Func<IResult> successAction)
     {
         if (result.IsSuccess)
         {
-            return successAction(result);
+            return successAction();
         }
         else
         {
