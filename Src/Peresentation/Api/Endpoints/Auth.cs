@@ -1,17 +1,19 @@
-﻿using Api.Abstractions;
-using Application.Commands.Auth;
-using MediatR;
+﻿using Application.Commands.Auth;
 
 namespace Api.Endpoints;
 
-public class Auth : IEndpointBuilder
+public class Auth : ResultBaseEndpoint
 {
-    public void ConfigureEndpoint(IEndpointRouteBuilder builder)
+    public Auth(IMediator mediator) : base(mediator) { }
+
+    public override void ConfigureEndpoint(IEndpointRouteBuilder builder)
     {
-        builder.MapPost("auth/registerCustomer", async (IMediator mediator, RegisterCustomerCommand request) =>
+        builder.MapPost("auth/registerCustomer", async ([FromBody] string phoneNumber) =>
         {
-            var result = await mediator.Send(request);
-            return Results.Ok(result);
-        });
+            var command = new RegisterCustomerCommand(new PhoneNumber { Value = phoneNumber });
+
+            return await FromResult<RegisterCustomerCommand, Result<Guid>, Guid>(command, _ => Results.Created());
+        })
+            .Produces(201);
     }
 }
