@@ -3,39 +3,39 @@ namespace Api.Abstractions;
 
 public abstract class ResultBaseEndpoint : IEndpointBuilder
 {
-    protected readonly IMediator _mediator;
-
-    protected ResultBaseEndpoint(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
     public abstract void ConfigureEndpoint(IEndpointRouteBuilder builder);
 
-    protected async Task<IResult> FromResult<TRequest, TResult, TContent>(TRequest request, Func<Result, IResult> successAction)
-      where TRequest : IRequest<TResult>
-        where TResult : Result<TContent>
+    protected IResult FromResult(Result result, Func<Result, IResult> successAction)
     {
-        var result = await _mediator.Send(request);
-
         if (result.IsSuccess)
         {
             return successAction(result);
         }
-        else if (result.Errors[0] is ValidationError error)
+        else
         {
-            var fieldName = (error.Title ?? "").Split('.')[^2];
+            return HandleErrors(result.Errors);
+        }
+    }
+
+    protected IResult HandleErrors(List<ResultError> resultErrors)
+    {
+        if (resultErrors[0] is ValidationError error)
+        {
+            var splitErrorTitle = error.Title!.Split('.');
+
+            var fieldName = splitErrorTitle[^1] is "Value" ?
+                splitErrorTitle[^2] : splitErrorTitle[^1];
 
             var errors = new Dictionary<string, string[]>
             {
-                { fieldName, [error.Message] }
+                { fieldName.ToLower(), [error.Message] }
             };
 
             return Results.ValidationProblem(errors);
         }
         else
         {
-            return Results.BadRequest(result.Errors);
+            return Results.BadRequest(resultErrors);
         }
     }
 }
