@@ -1,5 +1,4 @@
-﻿
-namespace Api.Abstractions;
+﻿namespace Api.Abstractions.Endpoints;
 
 public abstract class ResultBaseEndpoint : IEndpointBuilder
 {
@@ -19,7 +18,9 @@ public abstract class ResultBaseEndpoint : IEndpointBuilder
 
     protected IResult HandleErrors(List<ResultError> resultErrors)
     {
-        if (resultErrors[0] is ValidationError error)
+        var resultError = resultErrors[0];
+
+        if (resultError is ValidationError error)
         {
             var splitErrorTitle = error.Title!.Split('.');
 
@@ -35,7 +36,10 @@ public abstract class ResultBaseEndpoint : IEndpointBuilder
         }
         else
         {
-            return Results.BadRequest(resultErrors);
+            return Results.Problem(
+                detail: resultError.Message,
+                statusCode: 400,
+                title: resultError.Id);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Api.Abstractions;
+﻿using Api.Abstractions.Endpoints;
 
 namespace Api.Config.PipeLine.Setup;
 

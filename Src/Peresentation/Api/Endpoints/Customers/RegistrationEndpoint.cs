@@ -1,8 +1,9 @@
-﻿using Application.Commands.Auth;
+﻿using Api.Abstractions.Endpoints;
+using Application.Commands.Auth;
 
 namespace Api.Endpoints.Customers;
 
-public record RegisterRequest(string phoneNumber);
+public record RegisterRequest(string PhoneNumber);
 
 public class RegistrationEndpoint : ResultBaseEndpoint
 {
@@ -10,7 +11,7 @@ public class RegistrationEndpoint : ResultBaseEndpoint
     {
         builder.MapPost("customers/register", async (IMediator mediator, RegisterRequest request) =>
         {
-            var command = new RegisterCustomerCommand(new PhoneNumber { Value = request.phoneNumber });
+            var command = new RegisterCustomerCommand(new PhoneNumber { Value = request.PhoneNumber });
 
             var result = await mediator.Send(command);
 

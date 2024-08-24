@@ -1,4 +1,4 @@
-﻿using Api.Abstractions;
+﻿using Api.Abstractions.Endpoints;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Api.Config.DependencyInjection.Setup;
