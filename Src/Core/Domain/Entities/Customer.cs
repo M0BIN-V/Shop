@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Entities.Abstractions;
 
-public class Customer
+namespace Domain.Entities;
+
+public class Customer : PersonRoleEntityBase, ICodedEntity
 {
-    public required PersonalInformation PersonalInformation { get; set; }
+    public Guid Code { get; set; }
 }

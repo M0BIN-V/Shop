@@ -1,19 +1,12 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Entities.Abstractions;
 
-public class PersonalInformation
+namespace Domain.Entities;
+
+public class PersonalInformation : EntityBase
 {
-    public virtual required Name FirstName { get; set; }
+    public Name? FirstName { get; set; }
 
-    public virtual required Name LastName { get; set; }
+    public Name? LastName { get; set; }
 
-    public virtual required NationalCode NationalCode { get; set; }
-
-    public virtual required PhoneNumber PhoneNumber { get; set; }
-
-    public virtual required PlaceAddress HomeAddress { get; set; }
-
-    public virtual required Email Email { get; set; }
-
-    public virtual required DateTimeOffset BirthData { get; set; }
-
+    public required PhoneNumber PhoneNumber { get; set; }
 }
