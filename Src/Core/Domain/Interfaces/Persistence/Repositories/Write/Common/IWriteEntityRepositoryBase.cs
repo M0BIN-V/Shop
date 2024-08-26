@@ -6,5 +6,5 @@ namespace Domain.Interfaces.Persistence.Repositories.Write.Abstractions;
 public interface IWriteEntityRepositoryBase<TEntity> : IRepository
     where TEntity : EntityBase
 {
-    public void Add(TEntity entity);
+    public Task AddAsync(TEntity entity);
 }

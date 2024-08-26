@@ -9,7 +9,7 @@ public class RegisterCustomerTest
 {
     readonly Mock<IReadCustomersRepository> _readRepositoryMock = new();
     readonly Mock<IWriteCustomersRepository> _writeRepositoryMock = new();
-    readonly RegisterCustomerCommandHandler _handler;
+    readonly RegisterCustomerHandler _handler;
 
     public RegisterCustomerTest()
     {
@@ -17,7 +17,7 @@ public class RegisterCustomerTest
     }
 
     [Fact]
-    public async void RegisterCustomerTest_withNewCustomer()
+    public async Task RegisterCustomerTest_withNewCustomer()
     {
         var request = new RegisterCustomerCommand(new PhoneNumber { Value = "09366656565" });
 
@@ -27,11 +27,11 @@ public class RegisterCustomerTest
     }
 
     [Fact]
-    public async void RegisterCustomerTest_withExistCustomer()
+    public async Task RegisterCustomerTest_withExistCustomer()
     {
         var request = new RegisterCustomerCommand(new PhoneNumber { Value = "09366656565" });
 
-        _readRepositoryMock.Setup(x => x.Exists(request.PhoneNumber)).Returns(true);
+        _readRepositoryMock.Setup(x => x.ExistsAsync(request.PhoneNumber)).Returns(Task.FromResult(true));
 
         var result = await _handler.Handle(request, CancellationToken.None);
 

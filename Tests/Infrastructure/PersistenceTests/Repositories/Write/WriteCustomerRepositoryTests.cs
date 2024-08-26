@@ -18,7 +18,7 @@ public class WriteCustomerRepositoryTests : RepositoryBase, IWriteRepositoryBase
     }
 
     [Fact]
-    public void Add()
+    public async Task Add()
     {
         var customer = new Customer
         {
@@ -31,9 +31,10 @@ public class WriteCustomerRepositoryTests : RepositoryBase, IWriteRepositoryBase
             }
         };
 
-        _writeRepository.Add(customer);
+        await _writeRepository.AddAsync(customer);
 
-        _readRepository.Exists(customer.PersonalInformation.PhoneNumber)
-            .Should().BeTrue();
+        var exists = await _readRepository.ExistsAsync(customer.PersonalInformation.PhoneNumber);
+
+        exists.Should().BeTrue();
     }
 }

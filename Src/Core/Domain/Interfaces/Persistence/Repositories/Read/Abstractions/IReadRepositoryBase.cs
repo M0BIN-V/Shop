@@ -6,5 +6,5 @@ namespace Domain.Interfaces.Persistence.Repositories.Read.Abstractions;
 public interface IReadRepositoryBase<TEntity> : IRepository
     where TEntity : EntityBase
 {
-    public TEntity? Get(long id);
+    public Task<TEntity?> GetAsync(long id);
 }

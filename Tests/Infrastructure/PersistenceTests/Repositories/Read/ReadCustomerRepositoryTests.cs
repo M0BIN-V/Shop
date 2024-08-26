@@ -20,7 +20,7 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
     }
 
     [Fact]
-    public void GetById_whenExists()
+    public async Task GetById_whenExists()
     {
         var customer = new Customer
         {
@@ -33,9 +33,9 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
             }
         };
 
-        _writeRepository.Add(customer);
+        await _writeRepository.AddAsync(customer);
 
-        var result = _readRepository.Get(customer.Id);
+        var result = await _readRepository.GetAsync(customer.Id);
 
         result
             .Should()
@@ -48,15 +48,17 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
     }
 
     [Fact]
-    public void GetById_whenNotExists()
+    public async Task GetById_whenNotExists()
     {
-        _readRepository.Get(1)
-            .Should()
-            .BeNull();
+        var result = await _readRepository.GetAsync(1);
+
+        result
+             .Should()
+             .BeNull();
     }
 
     [Fact]
-    public void GetByPhoneNumber_WhenExists()
+    public async Task GetByPhoneNumber_WhenExists()
     {
         var phoneNumber = new PhoneNumber { Value = "09136470184" };
         var customer = new Customer
@@ -64,9 +66,9 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
             PersonalInformation = new() { PhoneNumber = phoneNumber }
         };
 
-        _writeRepository.Add(customer);
+        await _writeRepository.AddAsync(customer);
 
-        var result = _readRepository.Get(phoneNumber);
+        var result = await _readRepository.GetAsync(phoneNumber);
 
         result
             .Should()
@@ -79,15 +81,15 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
     }
 
     [Fact]
-    public void GetByPhoneNumber_whenNotExists()
+    public async Task GetByPhoneNumber_whenNotExists()
     {
-        _readRepository.Get(new PhoneNumber { Value = "09665559856" })
-            .Should()
-            .BeNull();
+        var result = await _readRepository.GetAsync(new PhoneNumber { Value = "09665559856" });
+
+        result.Should().BeNull();
     }
 
     [Fact]
-    public void Exists_whenCustomerExists()
+    public async Task Exists_whenCustomerExists()
     {
         var phoneNumber = new PhoneNumber { Value = "09156970284" };
 
@@ -99,18 +101,18 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
             }
         };
 
-        _writeRepository.Add(customer);
+        await _writeRepository.AddAsync(customer);
 
-        _readRepository.Exists(phoneNumber)
-            .Should()
-            .BeTrue();
+        var exists = await _readRepository.ExistsAsync(phoneNumber);
+
+        exists.Should().BeTrue();
     }
 
     [Fact]
-    public void Exists_whenCustomerNotExists()
+    public async Task Exists_whenCustomerNotExists()
     {
-        _readRepository.Exists(new PhoneNumber { Value = "09111165555" })
-            .Should()
-            .BeFalse();
+        var exists = await _readRepository.ExistsAsync(new PhoneNumber { Value = "09111165555" });
+
+        exists.Should().BeFalse();
     }
 }

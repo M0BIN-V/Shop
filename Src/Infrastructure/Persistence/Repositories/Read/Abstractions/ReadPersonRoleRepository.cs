@@ -1,5 +1,5 @@
-﻿using Domain.Entities.Abstractions;
-using Domain.Interfaces.Persistence.Repositories.Read.Abstractions;
+﻿using Domain.Interfaces.Persistence.Repositories.Read.Abstractions;
+using Microsoft.EntityFrameworkCore;
 using Persistence.DbContexts;
 
 namespace Persistence.Repositories.Read.Abstractions;
@@ -9,13 +9,13 @@ public abstract class ReadPersonRoleRepository<TPerson> : ReadRepositoryBase<TPe
 {
     protected ReadPersonRoleRepository(ReadDbContext context) : base(context) { }
 
-    public bool Exists(PhoneNumber phoneNumber)
+    public async Task<bool> ExistsAsync(PhoneNumber phoneNumber)
     {
-        return _set.Any(x => x.PersonalInformation.PhoneNumber.Equals(phoneNumber));
+        return await _set.AnyAsync(x => x.PersonalInformation.PhoneNumber.Equals(phoneNumber));
     }
 
-    public TPerson? Get(PhoneNumber phoneNumber)
+    public async Task<TPerson?> GetAsync(PhoneNumber phoneNumber)
     {
-        return _set.SingleOrDefault(x => x.PersonalInformation.PhoneNumber.Equals(phoneNumber));
+        return await _set.SingleOrDefaultAsync(x => x.PersonalInformation.PhoneNumber.Equals(phoneNumber));
     }
 }

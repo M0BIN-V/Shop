@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces.Persistence.Repositories.Read.Abstractions;
+using Microsoft.EntityFrameworkCore;
 using Persistence.DbContexts;
 using Persistence.Repositories.Abstractions;
 
@@ -9,8 +10,8 @@ public abstract class ReadRepositoryBase<TEntity> : RepositoryBase<TEntity>, IRe
 {
     protected ReadRepositoryBase(ReadDbContext context) : base(context) { }
 
-    public TEntity? Get(long id)
+    public async Task<TEntity?> GetAsync(long id)
     {
-        return _set.FirstOrDefault(x => x.Id == id);
+        return await _set.FirstOrDefaultAsync(x => x.Id == id);
     }
 }

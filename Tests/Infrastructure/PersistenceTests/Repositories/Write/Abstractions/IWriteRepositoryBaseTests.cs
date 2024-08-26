@@ -5,5 +5,5 @@ namespace PersistenceTests.Repositories.Write.Abstractions;
 internal interface IWriteRepositoryBaseTests<TEntity>
     where TEntity : EntityBase
 {
-    public void Add();
+    public Task Add();
 }

@@ -1,5 +1,4 @@
-﻿using Domain.Entities.Abstractions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Persistence.DbContexts.Common;
 
 namespace Persistence.Repositories.Abstractions;
