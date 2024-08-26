@@ -2,23 +2,22 @@
 
 public record RegisterCustomerCommand(PhoneNumber PhoneNumber) : IRequest<Result<Guid>>;
 
-public class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCommand, Result<Guid>>
+public class RegisterCustomerHandler : IRequestHandler<RegisterCustomerCommand, Result<Guid>>
 {
     readonly IWriteCustomersRepository _writeCustomers;
     readonly IReadCustomersRepository _readCustomers;
 
-    public RegisterCustomerCommandHandler(IReadCustomersRepository readCustomers, IWriteCustomersRepository writeCustomers)
+    public RegisterCustomerHandler(IReadCustomersRepository readCustomers, IWriteCustomersRepository writeCustomers)
     {
         _writeCustomers = writeCustomers;
         _readCustomers = readCustomers;
     }
 
-    public Task<Result<Guid>> Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
     {
-        if (_readCustomers.Exists(request.PhoneNumber))
+        if (await _readCustomers.ExistsAsync(request.PhoneNumber))
         {
-            var error = new CustomerAlreadyExistsError();
-            return new Result<Guid>(error);
+            return new CustomerAlreadyExistsError();
         }
 
         var newCustomer = new Customer
@@ -29,7 +28,7 @@ public class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCo
             }
         };
 
-        _writeCustomers.Add(newCustomer);
+       await _writeCustomers.AddAsync(newCustomer);
 
         return new Result<Guid>(newCustomer.Code);
     }
