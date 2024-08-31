@@ -11,10 +11,11 @@ public class SendOtpHandlerTest
     readonly Mock<IReadCustomersRepository> _readCustomerRepositoryMock = new();
     readonly Mock<ISmsService> _smsServiceMock = new();
     readonly SendOtpHandler _handler;
+    readonly Mock<IOtpService> _otpServiceMock = new();
 
     public SendOtpHandlerTest()
     {
-        _handler = new(_readCustomerRepositoryMock.Object, _smsServiceMock.Object);
+        _handler = new(_readCustomerRepositoryMock.Object, _smsServiceMock.Object, _otpServiceMock.Object);
     }
 
     [Fact]

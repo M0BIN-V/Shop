@@ -1,5 +1,5 @@
 ﻿using Api.Abstractions.Endpoints;
-using Application.Commands.Auth;
+using Application.Commands.Customers;
 
 namespace Api.Endpoints.Customers;
 

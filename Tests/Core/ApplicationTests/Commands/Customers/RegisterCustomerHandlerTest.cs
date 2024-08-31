@@ -1,4 +1,4 @@
-﻿using Application.Commands.Auth;
+﻿using Application.Commands.Customers;
 using Domain.Interfaces.Persistence.Repositories.Read;
 using Domain.Interfaces.Persistence.Repositories.Write;
 using Domain.ValueObjects;

@@ -1,4 +1,4 @@
-﻿namespace Application.Commands.Auth;
+﻿namespace Application.Commands.Customers;
 
 public record RegisterCustomerCommand(PhoneNumber PhoneNumber) : IRequest<Result<Guid>>;
 
