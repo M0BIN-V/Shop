@@ -29,7 +29,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersistenceTests", "Tests\Infrastructure\PersistenceTests\PersistenceTests.csproj", "{EB161237-047A-49D1-AB03-C4BA1FD9A055}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationTests", "Tests\Core\ApplicationTests\ApplicationTests.csproj", "{578B9952-89B7-42BB-AA81-BCE53ED36821}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationTests", "Tests\Core\ApplicationTests\ApplicationTests.csproj", "{578B9952-89B7-42BB-AA81-BCE53ED36821}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsService", "Src\Infrastructure\SmsService\SmsService.csproj", "{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{578B9952-89B7-42BB-AA81-BCE53ED36821}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{578B9952-89B7-42BB-AA81-BCE53ED36821}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{578B9952-89B7-42BB-AA81-BCE53ED36821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{2E95523A-A790-4644-AFAC-CB207FA9CC54} = {584C8B52-3CF8-4BD9-AEA6-A034DC473C60}
 		{EB161237-047A-49D1-AB03-C4BA1FD9A055} = {2E95523A-A790-4644-AFAC-CB207FA9CC54}
 		{578B9952-89B7-42BB-AA81-BCE53ED36821} = {647D8542-0B00-4D4A-BFC6-CBE797E8C40B}
+		{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF} = {FFACA22D-D661-4B04-9C83-7EBAD15FB366}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8767946-8757-45A7-8178-22A33C211847}
