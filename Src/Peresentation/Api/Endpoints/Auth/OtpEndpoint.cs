@@ -3,15 +3,16 @@ using Application.Commands.Auth;
 
 namespace Api.Endpoints.Auth;
 
+public record SendOtpRequest(string PhoneNumber);
 public class OtpEndpoint : ResultBaseEndpoint
 {
     public override void ConfigureEndpoint(IEndpointRouteBuilder builder)
     {
-        builder.MapPost("auth/send-otp", async ([FromBody] string phoneNumber, IMediator mediator) =>
+        builder.MapPost("auth/send-otp", async (SendOtpRequest request, IMediator mediator) =>
         {
-            var phoneNumberValueObject = new PhoneNumber { Value = phoneNumber };
+            var phoneNumberValueObject = new PhoneNumber { Value = request.PhoneNumber };
 
-            var command = new SendOtpRequest(phoneNumberValueObject);
+            var command = new SendOtpCommand(phoneNumberValueObject);
 
             var result = await mediator.Send(command);
 
