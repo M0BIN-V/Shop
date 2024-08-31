@@ -25,7 +25,7 @@ public class SendOtpHandlerTest
 
         _readCustomerRepositoryMock.Setup(r => r.ExistsAsync(phoneNumber)).Returns(Task.FromResult(false));
 
-        var result = await _handler.Handle(new SendOtpRequest(phoneNumber), CancellationToken.None);
+        var result = await _handler.Handle(new SendOtpCommand(phoneNumber), CancellationToken.None);
 
         result.IsFailure.Should().BeTrue();
 
@@ -39,7 +39,7 @@ public class SendOtpHandlerTest
 
         _readCustomerRepositoryMock.Setup(r => r.ExistsAsync(phoneNumber)).Returns(Task.FromResult(true));
 
-        var result = await _handler.Handle(new SendOtpRequest(phoneNumber), CancellationToken.None);
+        var result = await _handler.Handle(new SendOtpCommand(phoneNumber), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
     }
