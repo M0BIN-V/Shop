@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationTests", "Tests\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsService", "Src\Infrastructure\SmsService\SmsService.csproj", "{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpService", "Src\Infrastructure\OtpService\OtpService.csproj", "{27D67665-D346-41FA-9DEA-18C1F30E6D68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27D67665-D346-41FA-9DEA-18C1F30E6D68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27D67665-D346-41FA-9DEA-18C1F30E6D68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27D67665-D346-41FA-9DEA-18C1F30E6D68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27D67665-D346-41FA-9DEA-18C1F30E6D68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{EB161237-047A-49D1-AB03-C4BA1FD9A055} = {2E95523A-A790-4644-AFAC-CB207FA9CC54}
 		{578B9952-89B7-42BB-AA81-BCE53ED36821} = {647D8542-0B00-4D4A-BFC6-CBE797E8C40B}
 		{F8DB511F-9C64-4448-B88C-49F0F2B0E6FF} = {FFACA22D-D661-4B04-9C83-7EBAD15FB366}
+		{27D67665-D346-41FA-9DEA-18C1F30E6D68} = {FFACA22D-D661-4B04-9C83-7EBAD15FB366}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C8767946-8757-45A7-8178-22A33C211847}

@@ -1,6 +1,4 @@
 ﻿using Api.Config.DependencyInjection.Setup;
-using Application;
-using Persistence;
 
 namespace Api.Config.DependencyInjection;
 
@@ -10,13 +8,11 @@ public static class ConfigureDependenciesExtensions
     {
         builder.Services
 
-            .AddSmsService()
-
-            .AddApplicationHandlers()
-
-            .AddSwaggerGen()
+            .AddApplicationSetup()
 
             .AddPersistenceSetup(builder.Configuration)
+
+            .AddSwaggerGen()
 
             .AddEndpoints()
 
