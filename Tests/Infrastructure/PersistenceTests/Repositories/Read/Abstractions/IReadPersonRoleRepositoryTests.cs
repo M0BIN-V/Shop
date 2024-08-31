@@ -2,7 +2,7 @@
 
 public interface IReadPersonRoleRepositoryTests : IReadRepositoryBaseTests
 {
-    public  Task GetByPhoneNumber_WhenExists();
+    public  Task GetByPhoneNumber_WhenExists_ShouldReturnEntity();
 
-    public  Task GetByPhoneNumber_whenNotExists();
+    public  Task GetByPhoneNumber_WhenNotExists_ShouldReturnNull();
 }

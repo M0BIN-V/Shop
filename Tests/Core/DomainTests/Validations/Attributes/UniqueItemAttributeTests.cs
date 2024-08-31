@@ -12,7 +12,7 @@ public class UniqueItemAttributeTests
     }
 
     [Fact]
-    public void InvalidCollectionWithSameObject()
+    public void UniqueItem_WithSameObject_ShouldReturnFalse()
     {
         List<string> objects = ["ali", "ali", "ali"];
 
@@ -22,7 +22,7 @@ public class UniqueItemAttributeTests
     }
 
     [Fact]
-    public void ValidCollectionWithoutSameObjects()
+    public void UniqueItem_WithoutSameObject_ShouldReturnTrue()
     {
         List<string> objects = ["ali", "ahmad", "reza"];
 

@@ -3,21 +3,21 @@ using Domain.Interfaces.Persistence.Repositories.Read;
 using Domain.Interfaces.Persistence.Repositories.Write;
 using Domain.ValueObjects;
 
-namespace ApplicationTests.Commands.Auth;
+namespace ApplicationTests.Commands.Customers;
 
-public class RegisterCustomerTest
+public class RegisterCustomerHandlerTest
 {
     readonly Mock<IReadCustomersRepository> _readRepositoryMock = new();
     readonly Mock<IWriteCustomersRepository> _writeRepositoryMock = new();
     readonly RegisterCustomerHandler _handler;
 
-    public RegisterCustomerTest()
+    public RegisterCustomerHandlerTest()
     {
         _handler = new(_readRepositoryMock.Object, _writeRepositoryMock.Object);
     }
 
     [Fact]
-    public async Task RegisterCustomerTest_withNewCustomer()
+    public async Task RegisterCustomerTest_withNewCustomer_ShouldReturnSuccessResult()
     {
         var request = new RegisterCustomerCommand(new PhoneNumber { Value = "09366656565" });
 
@@ -27,7 +27,7 @@ public class RegisterCustomerTest
     }
 
     [Fact]
-    public async Task RegisterCustomerTest_withExistCustomer()
+    public async Task RegisterCustomerTest_withExistCustomer_ShouldReturnFailure()
     {
         var request = new RegisterCustomerCommand(new PhoneNumber { Value = "09366656565" });
 
@@ -35,6 +35,6 @@ public class RegisterCustomerTest
 
         var result = await _handler.Handle(request, CancellationToken.None);
 
-        result.IsSuccess.Should().BeFalse();
+        result.IsFailure.Should().BeTrue();
     }
 }

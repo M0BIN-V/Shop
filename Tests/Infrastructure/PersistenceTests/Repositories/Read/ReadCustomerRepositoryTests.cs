@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-using Domain.ValueObjects;
-using Persistence.Repositories.Read;
+﻿using Persistence.Repositories.Read;
 using Persistence.Repositories.Write;
 using PersistenceTests.Repositories.Common;
 using PersistenceTests.Repositories.Read.Abstractions;
@@ -20,7 +18,7 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
     }
 
     [Fact]
-    public async Task GetById_whenExists()
+    public async Task GetById_WhenExists_ShouldReturnEntity()
     {
         var customer = new Customer
         {
@@ -48,7 +46,7 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
     }
 
     [Fact]
-    public async Task GetById_whenNotExists()
+    public async Task GetById_WhenNotExists_ShouldReturnNull()
     {
         var result = await _readRepository.GetAsync(1);
 
@@ -58,7 +56,7 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
     }
 
     [Fact]
-    public async Task GetByPhoneNumber_WhenExists()
+    public async Task GetByPhoneNumber_WhenExists_ShouldReturnEntity()
     {
         var phoneNumber = new PhoneNumber { Value = "09136470184" };
         var customer = new Customer
@@ -81,7 +79,7 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
     }
 
     [Fact]
-    public async Task GetByPhoneNumber_whenNotExists()
+    public async Task GetByPhoneNumber_WhenNotExists_ShouldReturnNull()
     {
         var result = await _readRepository.GetAsync(new PhoneNumber { Value = "09665559856" });
 
@@ -89,7 +87,7 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
     }
 
     [Fact]
-    public async Task Exists_whenCustomerExists()
+    public async Task Exists_WhenCustomerExists_ShouldReturnTrue()
     {
         var phoneNumber = new PhoneNumber { Value = "09156970284" };
 
@@ -109,7 +107,7 @@ public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleReposi
     }
 
     [Fact]
-    public async Task Exists_whenCustomerNotExists()
+    public async Task Exists_WhenCustomerNotExists_ShouldReturnFalse()
     {
         var exists = await _readRepository.ExistsAsync(new PhoneNumber { Value = "09111165555" });
 

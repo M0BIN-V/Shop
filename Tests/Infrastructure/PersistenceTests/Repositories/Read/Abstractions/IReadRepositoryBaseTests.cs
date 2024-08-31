@@ -2,6 +2,6 @@
 
 public interface IReadRepositoryBaseTests
 {
-    public Task GetById_whenExists();
-    public Task GetById_whenNotExists();
+    public Task GetById_WhenExists_ShouldReturnEntity();
+    public Task GetById_WhenNotExists_ShouldReturnNull();
 }
