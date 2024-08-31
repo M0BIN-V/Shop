@@ -2,9 +2,9 @@
 
 namespace Application.Commands.Auth;
 
-public record SendOtpRequest(PhoneNumber PhoneNumber) : IRequest<Result>;
+public record SendOtpCommand(PhoneNumber PhoneNumber) : IRequest<Result>;
 
-public class SendOtpHandler : IRequestHandler<SendOtpRequest, Result>
+public class SendOtpHandler : IRequestHandler<SendOtpCommand, Result>
 {
     readonly IReadCustomersRepository _customersRepository;
     readonly ISmsService _smsService;
@@ -20,7 +20,7 @@ public class SendOtpHandler : IRequestHandler<SendOtpRequest, Result>
         _otpService = otpService;
     }
 
-    public async Task<Result> Handle(SendOtpRequest request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(SendOtpCommand request, CancellationToken cancellationToken)
     {
         if (!await _customersRepository.ExistsAsync(request.PhoneNumber))
         {
