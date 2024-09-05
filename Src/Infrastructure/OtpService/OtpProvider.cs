@@ -1,12 +1,12 @@
 ﻿using Application.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
+using System.Security.Cryptography;
 
 namespace OtpService;
 
 public class OtpProvider : IOtpService
 {
     readonly IMemoryCache _memoryCache;
-    readonly Random _random = new();
 
     public OtpProvider(IMemoryCache memoryCache)
     {
@@ -18,14 +18,14 @@ public class OtpProvider : IOtpService
         _memoryCache.Remove(key);
     }
 
-    public string Generate(string key, DateTimeOffset? absoluteExpiration = null)
+    public string GenerateAndSave(string key, DateTimeOffset? absoluteExpiration = null)
     {
         if (_memoryCache.TryGetValue<string>(key, out _))
         {
             _memoryCache.Remove(key);
         }
 
-        var otp = _random.Next(100000, 999999).ToString();
+        var otp = RandomNumberGenerator.GetInt32(100000, 999999).ToString();
 
         _memoryCache.Set(key, otp, absoluteExpiration ?? DateTimeOffset.Now.AddDays(1));
 

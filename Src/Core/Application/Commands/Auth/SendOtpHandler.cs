@@ -27,7 +27,7 @@ public class SendOtpHandler : IRequestHandler<SendOtpCommand, Result>
             return new CustomerNotFoundError();
         }
 
-        var otp = _otpService.Generate(request.PhoneNumber.Value);
+        var otp = _otpService.GenerateAndSave(request.PhoneNumber.Value);
 
         await _smsService.SendOtpAsync(request.PhoneNumber, otp);
 
