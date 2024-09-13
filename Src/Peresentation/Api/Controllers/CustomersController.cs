@@ -19,7 +19,7 @@ public class CustomersController : ResultBaseController
 
     [HttpPost("register")]
     [ProducesResponseType<Guid>(Status201Created)]
-    public async Task<IActionResult> Register(string phoneNumber)
+    public async Task<IActionResult> Register([FromBody] string phoneNumber)
     {
         var command = new RegisterCustomerCommand(new PhoneNumber { Value = phoneNumber });
 
