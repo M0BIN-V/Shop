@@ -14,9 +14,9 @@ public static class ConfigureDependenciesExtensions
 
             .AddSwaggerGen()
 
-            .AddEndpoints()
+            .AddEndpointsApiExplorer()
 
-            .AddEndpointsApiExplorer();
+            .AddControllers();
 
         return builder;
     }

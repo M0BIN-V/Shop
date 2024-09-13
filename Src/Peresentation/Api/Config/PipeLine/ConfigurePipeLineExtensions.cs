@@ -14,7 +14,7 @@ public static class ConfigurePipeLineExtensions
             app.UseSwaggerUI();
         }
 
-        app.MapEndpoints();
+        app.MapControllers();
 
         return app;
     }
