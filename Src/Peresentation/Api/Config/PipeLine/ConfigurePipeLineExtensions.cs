@@ -1,6 +1,4 @@
-﻿using Api.Config.PipeLine.Setup;
-
-namespace Api.Config.PipeLine;
+﻿namespace Api.Config.PipeLine;
 
 public static class ConfigurePipeLineExtensions
 {

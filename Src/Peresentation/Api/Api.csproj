@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <Reference Include="Resulver.AspNetCore.WebApi">
-      <HintPath>..\..\..\..\Packages\Resulver.AspNetCore.WebApi\Resulver.AspNetCore.WebApi\bin\Release\net8.0\Resulver.AspNetCore.WebApi.dll</HintPath>
+      <HintPath>..\..\..\..\Packages\Resulver.AspNetCore.WebApi\Resulver.AspNetCore.WebApi\bin\Debug\net8.0\Resulver.AspNetCore.WebApi.dll</HintPath>
     </Reference>
   </ItemGroup>
 

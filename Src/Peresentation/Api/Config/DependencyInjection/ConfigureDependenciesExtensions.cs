@@ -8,6 +8,8 @@ public static class ConfigureDependenciesExtensions
     {
         builder.Services
 
+            .AddErrorHandlingSetup()
+
             .AddApplicationSetup()
 
             .AddPersistenceSetup(builder.Configuration)
