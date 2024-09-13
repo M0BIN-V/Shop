@@ -26,7 +26,6 @@ public class ValidationErrorProfile : ErrorProfile
                };
 
                return new BadRequestObjectResult(validationProblem);
-           })
-           .WithStatusCode(Status400BadRequest);
+           });
     }
 }
