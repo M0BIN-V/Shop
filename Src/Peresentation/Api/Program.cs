@@ -1,9 +1,17 @@
-using Api.Config.DependencyInjection;
-using Api.Config.PipeLine;
+var builder = WebApplication.CreateBuilder(args);
 
-WebApplication
-    .CreateBuilder(args)
-    .AddServices()
-    .Build()
-    .ConfigurePipeLine()
-    .Run();
+builder.Services.InstallServices(builder.Configuration, typeof(Program).Assembly);
+
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.MapControllers();
+
+app.Run();
