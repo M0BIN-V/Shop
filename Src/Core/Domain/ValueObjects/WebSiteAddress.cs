@@ -5,7 +5,7 @@ namespace Domain.ValueObjects;
 
 public class WebSiteAddress : SingleValueObject<string>
 {
-    [MaxLength(255)]
+    [CustomMaxLength(255)]
     [DisplayName("ادرس وبسایت")]
     public override required string Value { get => base.Value; init => base.Value = value; }
 }
