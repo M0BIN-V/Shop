@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Resulver.AspNetCore.WebApi;
 
-namespace Api.Controllers;
+namespace Api.Controllers.Auth;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -16,9 +16,9 @@ public class AuthController : ResultBaseController
     }
 
     [HttpPost("send-otp")]
-    public async Task<IActionResult> SendOtp([FromBody] string phoneNumber)
+    public async Task<IActionResult> SendOtp(SendOtpRequest request)
     {
-        var phoneNumberValueObject = new PhoneNumber { Value = phoneNumber };
+        var phoneNumberValueObject = new PhoneNumber { Value = request.PhoneNumber };
 
         var command = new SendOtpCommand(phoneNumberValueObject);
 

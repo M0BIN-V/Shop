@@ -1,8 +1,9 @@
-﻿using Application.Commands.Customers;
+﻿using Api.Controllers.Auth;
+using Application.Commands.Customers;
 using Microsoft.AspNetCore.Mvc;
 using Resulver.AspNetCore.WebApi;
 
-namespace Api.Controllers;
+namespace Api.Controllers.Customers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -19,9 +20,9 @@ public class CustomersController : ResultBaseController
 
     [HttpPost("register")]
     [ProducesResponseType<Guid>(Status201Created)]
-    public async Task<IActionResult> Register([FromBody] string phoneNumber)
+    public async Task<IActionResult> Register(RegisterCustomerRequest request)
     {
-        var command = new RegisterCustomerCommand(new PhoneNumber { Value = phoneNumber });
+        var command = new RegisterCustomerCommand(new PhoneNumber { Value = request.PhoneNumber });
 
         var result = await _mediator.Send(command);
 
