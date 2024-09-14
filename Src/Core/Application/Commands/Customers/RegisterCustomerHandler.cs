@@ -28,8 +28,8 @@ public class RegisterCustomerHandler : IRequestHandler<RegisterCustomerCommand, 
             }
         };
 
-       await _writeCustomers.AddAsync(newCustomer);
+        await _writeCustomers.AddAsync(newCustomer);
 
-        return new Result<Guid>(newCustomer.Code);
+        return new Result<Guid>(newCustomer.Code, "ثبتنام با موفقیت انجام شد.");
     }
 }
