@@ -2,5 +2,5 @@
 
 namespace Domain.Errors;
 
-public class CustomerNotFoundError() : ResultError("Customer not found");
-public class CustomerAlreadyExistsError() : ResultError("Customer already exists");
+public class CustomerNotFoundError() : ResultError("کاربر پیدا نشد.");
+public class CustomerWithThisPhoneNumberAlreadyExistsError() : ResultError("این شماره تلفن توسط کاربر دیگری ثبت شده است.");

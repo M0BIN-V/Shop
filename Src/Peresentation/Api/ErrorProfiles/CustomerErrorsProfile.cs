@@ -6,7 +6,7 @@ public class CustomerErrorsProfile : ErrorProfile
 {
     public CustomerErrorsProfile()
     {
-        AddError<CustomerAlreadyExistsError>()
+        AddError<CustomerWithThisPhoneNumberAlreadyExistsError>()
             .WithStatusCode(Status409Conflict);
 
         AddError<CustomerNotFoundError>()

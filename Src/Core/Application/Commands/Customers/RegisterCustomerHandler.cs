@@ -17,7 +17,7 @@ public class RegisterCustomerHandler : IRequestHandler<RegisterCustomerCommand, 
     {
         if (await _readCustomers.ExistsAsync(request.PhoneNumber))
         {
-            return new CustomerAlreadyExistsError();
+            return new CustomerWithThisPhoneNumberAlreadyExistsError();
         }
 
         var newCustomer = new Customer
