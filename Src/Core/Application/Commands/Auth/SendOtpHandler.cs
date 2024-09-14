@@ -31,6 +31,6 @@ public class SendOtpHandler : IRequestHandler<SendOtpCommand, Result>
 
         await _smsService.SendOtpAsync(request.PhoneNumber, otp);
 
-        return new Result();
+        return new Result($"رمز یک بار مصرف به شماره {request.PhoneNumber} ارسال شد.");
     }
 }

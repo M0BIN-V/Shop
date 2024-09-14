@@ -16,6 +16,7 @@ public class AuthController : ResultBaseController
     }
 
     [HttpPost("send-otp")]
+    [ProducesResponseType<ResponseTemplate>(200)]
     public async Task<IActionResult> SendOtp(SendOtpRequest request)
     {
         var phoneNumberValueObject = new PhoneNumber { Value = request.PhoneNumber };
@@ -24,6 +25,6 @@ public class AuthController : ResultBaseController
 
         var result = await _mediator.Send(command);
 
-        return FromResult(result, Ok);
+        return FromResult(result, () => Ok(result.ToResponseTemplate()));
     }
 }
