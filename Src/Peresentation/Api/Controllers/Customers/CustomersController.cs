@@ -1,6 +1,5 @@
 ﻿using Application.Commands.Customers;
 using Microsoft.AspNetCore.Mvc;
-using Resulver.AspNetCore.WebApi;
 
 namespace Api.Controllers.Customers;
 
@@ -25,6 +24,6 @@ public class CustomersController : ResultBaseController
 
         var result = await _mediator.Send(command);
 
-        return FromResult(result, () => Created("", result.ToResponseTemplate()));
+        return FromResult(result, 201);
     }
 }

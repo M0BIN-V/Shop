@@ -1,6 +1,5 @@
 ﻿using Application.Commands.Auth;
 using Microsoft.AspNetCore.Mvc;
-using Resulver.AspNetCore.WebApi;
 
 namespace Api.Controllers.Auth;
 
@@ -25,6 +24,6 @@ public class AuthController : ResultBaseController
 
         var result = await _mediator.Send(command);
 
-        return FromResult(result, () => Ok(result.ToResponseTemplate()));
+        return FromResult(result);
     }
 }
