@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="DiServiceInstaller" Version="1.0.1" />
     <PackageReference Include="Resulver" Version="1.2.4" />
+    <PackageReference Include="Resulver.AspNetCore.WebApi" Version="1.2.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.1" />
   </ItemGroup>
 
@@ -17,12 +18,6 @@
     <ProjectReference Include="..\..\Infrastructure\OtpService\OtpService.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\..\Infrastructure\SmsService\SmsService.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Resulver.AspNetCore.WebApi">
-      <HintPath>..\..\..\..\Packages\Resulver.AspNetCore.WebApi\Resulver.AspNetCore.WebApi\bin\Debug\net8.0\Resulver.AspNetCore.WebApi.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
