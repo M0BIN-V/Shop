@@ -12,20 +12,22 @@ public class SendOtpHandlerTest
     readonly Mock<ISmsService> _smsServiceMock = new();
     readonly SendOtpHandler _handler;
     readonly Mock<IOtpService> _otpServiceMock = new();
+    readonly PhoneNumber _phoneNumber = new() { Value = "09111111111" };
 
     public SendOtpHandlerTest()
     {
+        _otpServiceMock.Setup(x => x.GenerateAndSave(_phoneNumber.Value, null))
+            .Returns("111111");
+
         _handler = new(_readCustomerRepositoryMock.Object, _smsServiceMock.Object, _otpServiceMock.Object);
     }
 
     [Fact]
     public async Task SendOtpHandler_WithNotExistsPhoneNumber_ShouldReturnFailureResult()
     {
-        var phoneNumber = new PhoneNumber { Value = "09111111111" };
+        _readCustomerRepositoryMock.Setup(r => r.ExistsAsync(_phoneNumber)).Returns(Task.FromResult(false));
 
-        _readCustomerRepositoryMock.Setup(r => r.ExistsAsync(phoneNumber)).Returns(Task.FromResult(false));
-
-        var result = await _handler.Handle(new SendOtpCommand(phoneNumber), CancellationToken.None);
+        var result = await _handler.Handle(new SendOtpCommand(_phoneNumber), CancellationToken.None);
 
         result.IsFailure.Should().BeTrue();
 
@@ -35,11 +37,9 @@ public class SendOtpHandlerTest
     [Fact]
     public async Task SendOtpHandler_WithExistsPhoneNumber_ShouldReturnSuccessResult()
     {
-        var phoneNumber = new PhoneNumber { Value = "06665988888" };
+        _readCustomerRepositoryMock.Setup(r => r.ExistsAsync(_phoneNumber)).Returns(Task.FromResult(true));
 
-        _readCustomerRepositoryMock.Setup(r => r.ExistsAsync(phoneNumber)).Returns(Task.FromResult(true));
-
-        var result = await _handler.Handle(new SendOtpCommand(phoneNumber), CancellationToken.None);
+        var result = await _handler.Handle(new SendOtpCommand(_phoneNumber), CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
     }

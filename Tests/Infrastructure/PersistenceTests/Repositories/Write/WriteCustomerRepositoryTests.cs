@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using Persistence.Repositories.Read;
+﻿using Persistence.Repositories.Read;
 using Persistence.Repositories.Write;
 using PersistenceTests.Repositories.Common;
 using PersistenceTests.Repositories.Write.Abstractions;

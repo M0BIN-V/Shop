@@ -1,5 +1,6 @@
 ﻿using Application.Commands.Auth;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace Api.Controllers.Auth;
 

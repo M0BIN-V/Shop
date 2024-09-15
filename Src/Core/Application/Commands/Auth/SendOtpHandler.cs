@@ -27,9 +27,14 @@ public class SendOtpHandler : IRequestHandler<SendOtpCommand, Result>
             return new CustomerNotFoundError();
         }
 
-        var otp = _otpService.GenerateAndSave(request.PhoneNumber.Value);
+        var otpResult = _otpService.GenerateAndSave(request.PhoneNumber.Value);
 
-        await _smsService.SendOtpAsync(request.PhoneNumber, otp);
+        if (otpResult.IsFailure)
+        {
+            return otpResult.Errors[0];
+        }
+
+        await _smsService.SendOtpAsync(request.PhoneNumber, otpResult.Content??throw new NullReferenceException("Otp is null"));
 
         return new Result($"رمز یک بار مصرف به شماره {request.PhoneNumber} ارسال شد.");
     }
