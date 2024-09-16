@@ -1,6 +1,4 @@
-﻿using Resulver.AspNetCore.WebApi;
-
-namespace Api.ServiceInstallers;
+﻿namespace Api.ServiceInstallers;
 
 public class ErrorHandlerInstaller : IServiceInstaller
 {

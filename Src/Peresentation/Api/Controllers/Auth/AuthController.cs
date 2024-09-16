@@ -1,6 +1,5 @@
 ﻿using Application.Commands.Auth;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace Api.Controllers.Auth;
 
@@ -22,6 +21,18 @@ public class AuthController : ResultBaseController
         var phoneNumberValueObject = new PhoneNumber { Value = request.PhoneNumber };
 
         var command = new SendOtpCommand(phoneNumberValueObject);
+
+        var result = await _mediator.Send(command);
+
+        return FromResult(result);
+    }
+
+    [HttpPost("login-with-otp")]
+    [ProducesResponseType<ResponseTemplate<string>>(Status200OK)]
+    public async Task<IActionResult> LoginWithOtp(LoginWithOtpRequest request)
+    {
+        var command = new LoginWithOtpCommand(
+            new PhoneNumber { Value = request.PhoneNumber }, request.Otp);
 
         var result = await _mediator.Send(command);
 

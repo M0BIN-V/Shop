@@ -2,3 +2,5 @@
 
 public class RateLimitError(TimeSpan remainingTime) :
     ResultError($"لطفا پس از {remainingTime.Minutes} دقیقه و {remainingTime.Seconds} ثانیه دوباره تلاش کنید.");
+
+public class OtpIsNotValidError() : ResultError("رمز یکبار مصرف یا شماره تلفن صحیح نمیباشد.");

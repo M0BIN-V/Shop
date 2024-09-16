@@ -10,3 +10,10 @@ public class RateLimitErrorProfile : ErrorProfile
         AddError<RateLimitError>().WithStatusCode(Status429TooManyRequests);
     }
 }
+public class OtpIsNotValidErrorProfile : ErrorProfile
+{
+    public OtpIsNotValidErrorProfile()
+    {
+        AddError<OtpIsNotValidError>().WithStatusCode(Status400BadRequest);
+    }
+}
