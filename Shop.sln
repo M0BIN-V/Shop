@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpService", "Src\Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OtpServiceTests", "Tests\Infrastructure\OtpServiceTests\OtpServiceTests.csproj", "{4057D1DA-BA5B-4155-817B-504A2536C0C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Src\Infrastructure\Auth\Auth.csproj", "{72A368EF-65FB-4444-BBD5-4B931D1EAA74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth", "Src\Infrastructure\Auth\Auth.csproj", "{72A368EF-65FB-4444-BBD5-4B931D1EAA74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
