@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Src/Infrastructure/Persistence/UpdateDb
+/Src/Infrastructure/Persistence/UpdateDb.ps1
