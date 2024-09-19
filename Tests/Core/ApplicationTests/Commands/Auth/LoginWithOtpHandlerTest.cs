@@ -2,14 +2,16 @@
 using Application.Errors;
 using Application.Interfaces;
 using Application.Interfaces.Auth;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-using Resulver;
+using Domain.Interfaces.Persistence.Repositories.Read;
+using Domain.Interfaces.Persistence.Repositories.Write;
 
 namespace ApplicationTests.Commands.Auth;
 
 public class LoginWithOtpHandlerTest
 {
     readonly LoginWithOtpHandler _handler;
+    readonly Mock<IReadCustomersRepository> _readCustomerRepository = new();
+    readonly Mock<IWriteCustomersRepository> _writeCustomerRepository = new();
     readonly Mock<IOtpService> _otpService = new();
     readonly Mock<IJwtService> _jwtService = new();
     readonly PhoneNumber _phoneNumber = new() { Value = "09122245444" };
@@ -19,7 +21,12 @@ public class LoginWithOtpHandlerTest
     public LoginWithOtpHandlerTest()
     {
         _request = new(_phoneNumber, _requestOtp);
-        _handler = new LoginWithOtpHandler(_otpService.Object, _jwtService.Object);
+
+        _handler = new LoginWithOtpHandler(
+            _otpService.Object,
+            _jwtService.Object,
+            _readCustomerRepository.Object,
+            _writeCustomerRepository.Object);
     }
 
     [Fact]
