@@ -8,6 +8,8 @@ app.UseHttpsRedirection();
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseCors("AllowAnyOrigin");
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
