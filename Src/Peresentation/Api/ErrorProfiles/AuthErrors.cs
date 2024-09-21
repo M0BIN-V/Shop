@@ -7,7 +7,8 @@ public class RateLimitErrorProfile : ErrorProfile
 {
     public RateLimitErrorProfile()
     {
-        AddError<RateLimitError>().WithStatusCode(Status429TooManyRequests);
+        AddError<RateLimitError>()
+            .WithStatusCode(Status429TooManyRequests);
     }
 }
 public class OtpIsNotValidErrorProfile : ErrorProfile
