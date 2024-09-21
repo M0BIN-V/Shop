@@ -10,7 +10,7 @@ record OtpRequest(string Otp, DateTime LastRequestDate);
 
 public class OtpProvider : IOtpService
 {
-    readonly TimeSpan _otpRequestCooldown = TimeSpan.FromMinutes(2);
+    readonly TimeSpan _otpRequestCooldown = TimeSpan.FromMinutes(0.2);
     readonly IMemoryCache _memoryCache;
 
     public OtpProvider(IMemoryCache memoryCache)
@@ -29,7 +29,7 @@ public class OtpProvider : IOtpService
         {
             //Limit request rate
             var remainingTime = CalculateRemainingTime(otpRequest!.LastRequestDate);
-            if (remainingTime < _otpRequestCooldown)
+            if (remainingTime > TimeSpan.MinValue)
             {
                 return new RateLimitError(remainingTime);
             }
