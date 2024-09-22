@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿using Domain.Entities.Product;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Valobtify.EntityFrameworkCore;
@@ -8,6 +8,8 @@ namespace Persistence.DbContexts.Common;
 public abstract class DbContextBase : DbContext
 {
     public DbSet<Customer> Customers { get; set; }
+    public DbSet<Product> Products { get; set; }
+
     public DbSet<PersonalInformation> PersonalInformation { get; set; }
 
     protected DbContextBase() { }
