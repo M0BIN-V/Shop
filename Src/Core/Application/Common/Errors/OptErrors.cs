@@ -1,4 +1,4 @@
-﻿namespace Application.Errors;
+﻿namespace Application.Common.Errors;
 
 public class RateLimitError : ResultError
 {

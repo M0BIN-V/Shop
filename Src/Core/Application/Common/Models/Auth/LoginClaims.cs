@@ -1,4 +1,4 @@
-﻿namespace Application.Models.Auth;
+﻿namespace Application.Common.Models.Auth;
 
 public class LoginClaims
 {
