@@ -1,4 +1,4 @@
-using Application.Errors;
+using Application.Common.Errors;
 using Microsoft.Extensions.Caching.Memory;
 using OtpService;
 

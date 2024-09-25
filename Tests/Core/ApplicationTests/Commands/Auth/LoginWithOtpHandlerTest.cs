@@ -1,5 +1,5 @@
 ﻿using Application.Commands.Auth;
-using Application.Errors;
+using Application.Common.Errors;
 using Application.Interfaces;
 using Application.Interfaces.Auth;
 using Domain.Interfaces.Persistence.Repositories.Read;
