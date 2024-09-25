@@ -7,4 +7,5 @@ public interface IReadRepositoryBase<TEntity> : IRepository
     where TEntity : EntityBase
 {
     public Task<TEntity?> GetAsync(long id);
+    public Task<bool> ExistsAsync(long id);
 }

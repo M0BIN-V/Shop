@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using Domain.Interfaces.Persistence.Repositories.Read.Abstractions;
+﻿using Domain.Interfaces.Persistence.Repositories.Read.Abstractions;
 
 namespace Domain.Interfaces.Persistence.Repositories.Read;
 
