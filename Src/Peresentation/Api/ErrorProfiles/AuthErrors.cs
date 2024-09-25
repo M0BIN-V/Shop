@@ -1,4 +1,4 @@
-﻿using Application.Errors;
+﻿using Application.Common.Errors;
 using Resulver.AspNetCore.WebApi.ErrorHandling.Abstraction;
 
 namespace Api.ErrorProfiles;
