@@ -11,7 +11,7 @@
     <PackageReference Include="DiServiceInstaller" Version="1.0.1" />
     <PackageReference Include="Resulver" Version="1.2.4" />
     <PackageReference Include="Resulver.AspNetCore.WebApi" Version="1.2.4" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />
   </ItemGroup>
 
   <ItemGroup>
