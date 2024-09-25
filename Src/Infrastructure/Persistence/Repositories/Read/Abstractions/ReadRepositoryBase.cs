@@ -10,6 +10,11 @@ public abstract class ReadRepositoryBase<TEntity> : RepositoryBase<TEntity>, IRe
 {
     protected ReadRepositoryBase(ReadDbContext context) : base(context) { }
 
+    public async Task<bool> ExistsAsync(long id)
+    {
+        return await _set.AnyAsync(x => x.Id == id);
+    }
+
     public async Task<TEntity?> GetAsync(long id)
     {
         return await _set.FirstOrDefaultAsync(x => x.Id == id);
