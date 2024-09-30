@@ -1,3 +1,5 @@
-﻿namespace Api.Controllers.Products;
+﻿using System.ComponentModel.DataAnnotations;
 
-public record AddProductRequest(string Name, string? Description, int QuantityInStock, decimal Amount);
+namespace Api.Controllers.Products;
+
+public record AddProductRequest(string Name, string? Description, decimal Amount, int StockQuantity);

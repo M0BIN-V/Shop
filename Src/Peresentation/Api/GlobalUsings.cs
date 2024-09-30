@@ -2,6 +2,7 @@
 global using DiServiceInstaller;
 global using Domain.Errors;
 global using Domain.ValueObjects;
+global using Mapster;
 global using MediatR;
 global using Microsoft.AspNetCore.Mvc;
 global using Persistence;

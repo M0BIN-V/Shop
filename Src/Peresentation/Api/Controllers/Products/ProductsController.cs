@@ -1,7 +1,6 @@
 ﻿using Api.Common.Attributes;
 using Application.Commands.Products;
 using Application.Common.Dtos;
-using Mapster;
 
 namespace Api.Controllers.Products;
 
