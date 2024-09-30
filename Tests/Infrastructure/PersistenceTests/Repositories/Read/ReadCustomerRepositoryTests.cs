@@ -1,5 +1,4 @@
 ﻿using Persistence.Repositories.Read;
-using Persistence.Repositories.Write;
 using PersistenceTests.Repositories.Common;
 using PersistenceTests.Repositories.Read.Abstractions;
 
@@ -7,33 +6,29 @@ namespace PersistenceTests.Repositories.Read;
 
 public class ReadCustomerRepositoryTests : RepositoryTestsBase, IReadPersonRoleRepositoryTests
 {
-    readonly ReadCustomersRepository _readRepository;
-
-    readonly WriteCustomersRepository _writeRepository;
+    readonly ReadCustomersRepository _repository;
+    readonly PhoneNumber _phoneNumber = new() { Value = "09556565656" };
+    readonly Customer _customer;
 
     public ReadCustomerRepositoryTests()
     {
-        _readRepository = new ReadCustomersRepository(_readDbContext);
-        _writeRepository = new WriteCustomersRepository(_writeDbContext);
+        _repository = new ReadCustomersRepository(_readDbContext);
+
+        _customer = new()
+        {
+            PersonalInformation = new()
+            {
+                PhoneNumber = _phoneNumber
+            }
+        };
     }
 
     [Fact]
     public async Task GetById_WhenExists_ShouldReturnEntity()
     {
-        var customer = new Customer
-        {
-            PersonalInformation = new()
-            {
-                PhoneNumber = new()
-                {
-                    Value = "09665555987"
-                }
-            }
-        };
+        AddCustomerToDb();
 
-        await _writeRepository.AddAsync(customer);
-
-        var result = await _readRepository.GetAsync(customer.Id);
+        var result = await _repository.GetAsync(_customer.Id);
 
         result
             .Should()
@@ -42,13 +37,13 @@ public class ReadCustomerRepositoryTests : RepositoryTestsBase, IReadPersonRoleR
         result!
             .Id
             .Should()
-            .Be(customer.Id);
+            .Be(_customer.Id);
     }
 
     [Fact]
     public async Task GetById_WhenNotExists_ShouldReturnNull()
     {
-        var result = await _readRepository.GetAsync(1);
+        var result = await _repository.GetAsync(1);
 
         result
              .Should()
@@ -58,15 +53,9 @@ public class ReadCustomerRepositoryTests : RepositoryTestsBase, IReadPersonRoleR
     [Fact]
     public async Task GetByPhoneNumber_WhenExists_ShouldReturnEntity()
     {
-        var phoneNumber = new PhoneNumber { Value = "09136470184" };
-        var customer = new Customer
-        {
-            PersonalInformation = new() { PhoneNumber = phoneNumber }
-        };
+        AddCustomerToDb();
 
-        await _writeRepository.AddAsync(customer);
-
-        var result = await _readRepository.GetAsync(phoneNumber);
+        var result = await _repository.GetAsync(_phoneNumber);
 
         result
             .Should()
@@ -75,42 +64,52 @@ public class ReadCustomerRepositoryTests : RepositoryTestsBase, IReadPersonRoleR
         result!
             .PersonalInformation.PhoneNumber.Value
             .Should()
-            .Be(customer.PersonalInformation.PhoneNumber.Value);
+            .Be(_customer.PersonalInformation.PhoneNumber.Value);
     }
 
     [Fact]
     public async Task GetByPhoneNumber_WhenNotExists_ShouldReturnNull()
     {
-        var result = await _readRepository.GetAsync(new PhoneNumber { Value = "09665559856" });
+        var result = await _repository.GetAsync(_phoneNumber);
 
         result.Should().BeNull();
     }
 
     [Fact]
-    public async Task Exists_WhenCustomerExists_ShouldReturnTrue()
+    public async Task ExistsByPhoneNumber_WhenCustomerExists_ShouldReturnTrue()
     {
-        var phoneNumber = new PhoneNumber { Value = "09156970284" };
+        AddCustomerToDb();
 
-        var customer = new Customer()
-        {
-            PersonalInformation = new()
-            {
-                PhoneNumber = phoneNumber
-            }
-        };
-
-        await _writeRepository.AddAsync(customer);
-
-        var exists = await _readRepository.ExistsAsync(phoneNumber);
+        var exists = await _repository.ExistsAsync(_phoneNumber);
 
         exists.Should().BeTrue();
     }
 
     [Fact]
-    public async Task Exists_WhenCustomerNotExists_ShouldReturnFalse()
+    public async Task ExistsByPhoneNumber_WhenCustomerNotExists_ShouldReturnFalse()
     {
-        var exists = await _readRepository.ExistsAsync(new PhoneNumber { Value = "09111165555" });
+        var exists = await _repository.ExistsAsync(_phoneNumber);
 
         exists.Should().BeFalse();
+    }
+
+    [Fact]
+    public async Task ExistsById_WhenExists_ShouldReturnTrue()
+    {
+        AddCustomerToDb();
+
+        (await _repository.ExistsAsync(_customer.Id)).Should().BeTrue();
+    }
+
+    [Fact]
+    public async Task ExistsById_WhenNotExists_ShouldReturnFalse()
+    {
+        (await _repository.ExistsAsync(_customer.Id)).Should().BeFalse();
+    }
+
+    async void AddCustomerToDb()
+    {
+        await _writeDbContext.Customers.AddAsync(_customer);
+        await _writeDbContext.SaveChangesAsync();
     }
 }
