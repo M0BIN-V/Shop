@@ -16,6 +16,8 @@ public static class DependencyInjection
         services.AddDbContext<ReadDbContext>(optionsAction);
 
         services.AddScoped<IReadCustomersRepository, ReadCustomersRepository>();
+        services.AddScoped<IReadProductsRepository, ReadProductRepository>();
+
 
         return services;
     }
@@ -26,6 +28,7 @@ public static class DependencyInjection
         services.AddDbContext<WriteDbContext>(optionsAction);
 
         services.AddScoped<IWriteCustomersRepository, WriteCustomersRepository>();
+        services.AddScoped<IWriteProductRepository, WriteProductRepository>();
 
         return services;
     }
