@@ -1,6 +1,6 @@
 ﻿namespace Api.ServiceInstallers;
 
-public class PeresentationServicesInstaller : IServiceInstaller
+public class PresentationServicesInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
     {
