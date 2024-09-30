@@ -19,7 +19,6 @@ public class AddProductHandlerTests
         {
             Name = new Name { Value = "MyProduct" },
             Amount = 10_000_000,
-            Specifications = [new() { Title = new Title { Value = "size" } }],
             StockQuantity = 1000
         };
         _command = new(productDto);
