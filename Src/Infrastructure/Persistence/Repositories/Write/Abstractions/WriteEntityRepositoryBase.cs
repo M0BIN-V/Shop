@@ -10,7 +10,7 @@ public class WriteEntityRepositoryBase<TEntity>(WriteDbContext context) :
 {
     public async Task AddAsync(TEntity entity)
     {
-        await _set.AddAsync(entity);
+        await _entities.AddAsync(entity);
         await _context.SaveChangesAsync();
     }
 }

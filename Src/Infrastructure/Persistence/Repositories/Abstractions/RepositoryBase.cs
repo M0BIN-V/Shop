@@ -7,11 +7,11 @@ public abstract class RepositoryBase<TEntity>
 where TEntity : EntityBase
 {
     protected readonly DbContextBase _context;
-    protected readonly DbSet<TEntity> _set;
+    protected readonly DbSet<TEntity> _entities;
 
     protected RepositoryBase(DbContextBase context)
     {
         _context = context;
-        _set = context.Set<TEntity>();
+        _entities = context.Set<TEntity>();
     }
 }
