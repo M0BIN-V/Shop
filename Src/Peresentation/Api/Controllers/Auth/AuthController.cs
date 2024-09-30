@@ -1,5 +1,5 @@
-﻿using Application.Commands.Auth;
-using Microsoft.AspNetCore.Mvc;
+﻿using Api.Common.Attributes;
+using Application.Commands.Auth;
 
 namespace Api.Controllers.Auth;
 
@@ -15,7 +15,7 @@ public class AuthController : ResultBaseController
     }
 
     [HttpPost("send-otp")]
-    [ProducesResponseType<ResponseTemplate>(200)]
+    [ResultResponse(Status200OK)]
     public async Task<IActionResult> SendOtp(SendOtpRequest request)
     {
         var phoneNumberValueObject = new PhoneNumber { Value = request.PhoneNumber };
@@ -28,7 +28,7 @@ public class AuthController : ResultBaseController
     }
 
     [HttpPost("login-with-otp")]
-    [ProducesResponseType<ResponseTemplate<string>>(Status200OK)]
+    [ResultResponse<string>(Status200OK)]
     public async Task<IActionResult> LoginWithOtp(LoginWithOtpRequest request)
     {
         var command = new LoginWithOtpCommand(
