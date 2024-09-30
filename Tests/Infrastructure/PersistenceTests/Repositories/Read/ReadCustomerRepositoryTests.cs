@@ -5,7 +5,7 @@ using PersistenceTests.Repositories.Read.Abstractions;
 
 namespace PersistenceTests.Repositories.Read;
 
-public class ReadCustomerRepositoryTests : RepositoryBase, IReadPersonRoleRepositoryTests
+public class ReadCustomerRepositoryTests : RepositoryTestsBase, IReadPersonRoleRepositoryTests
 {
     readonly ReadCustomersRepository _readRepository;
 

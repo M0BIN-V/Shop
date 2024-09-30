@@ -3,12 +3,12 @@ using Persistence.DbContexts;
 
 namespace PersistenceTests.Repositories.Common;
 
-public abstract class RepositoryBase
+public abstract class RepositoryTestsBase
 {
     protected readonly ReadDbContext _readDbContext;
     protected readonly WriteDbContext _writeDbContext;
 
-    public RepositoryBase()
+    public RepositoryTestsBase()
     {
         var dbId = Guid.NewGuid().ToString();
 

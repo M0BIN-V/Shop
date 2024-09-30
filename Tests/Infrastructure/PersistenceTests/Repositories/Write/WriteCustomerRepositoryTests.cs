@@ -5,7 +5,7 @@ using PersistenceTests.Repositories.Write.Abstractions;
 
 namespace PersistenceTests.Repositories.Write;
 
-public class WriteCustomerRepositoryTests : RepositoryBase, IWriteRepositoryBaseTests<Customer>
+public class WriteCustomerRepositoryTests : RepositoryTestsBase, IWriteRepositoryBaseTests<Customer>
 {
     readonly ReadCustomersRepository _readRepository;
     readonly WriteCustomersRepository _writeRepository;
