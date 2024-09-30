@@ -11,11 +11,11 @@ public abstract class ReadPersonRoleRepository<TPerson> : ReadCodedEntityReposit
 
     public async Task<bool> ExistsAsync(PhoneNumber phoneNumber)
     {
-        return await _set.AnyAsync(x => x.PersonalInformation.PhoneNumber.Equals(phoneNumber));
+        return await _entities.AnyAsync(x => x.PersonalInformation.PhoneNumber.Equals(phoneNumber));
     }
 
     public async Task<TPerson?> GetAsync(PhoneNumber phoneNumber)
     {
-        return await _set.SingleOrDefaultAsync(x => x.PersonalInformation.PhoneNumber.Equals(phoneNumber));
+        return await _entities.SingleOrDefaultAsync(x => x.PersonalInformation.PhoneNumber.Equals(phoneNumber));
     }
 }
