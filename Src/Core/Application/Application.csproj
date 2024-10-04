@@ -11,8 +11,8 @@
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0" />
-    <PackageReference Include="Resulver" Version="1.2.4" />
-    <PackageReference Include="Validity.DataAnnotation" Version="2.2.2" />
+    <PackageReference Include="Resulver" Version="1.2.5" />
+    <PackageReference Include="Validity.DataAnnotation" Version="2.2.3" />
   </ItemGroup>
 
   <ItemGroup>

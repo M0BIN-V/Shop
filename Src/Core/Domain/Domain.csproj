@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Resulver" Version="1.2.4" />
-    <PackageReference Include="Valobtify" Version="1.1.1" />
+    <PackageReference Include="Resulver" Version="1.2.5" />
+    <PackageReference Include="Valobtify" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
