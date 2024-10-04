@@ -2,11 +2,18 @@
 
 namespace Domain.ValueObjects;
 
-public class NationalId : SingleValueObject<string>
+public sealed class NationalId : SingleValueObject<NationalId, string>, ICreatableValueObject<NationalId, string>
 {
     [CustomMinLength(11)]
     [CustomMaxLength(11)]
     [BeAllDigits]
     [DisplayName("شناسه ملی")]
-    public override required string Value { get => base.Value; init => base.Value = value; }
+    public override string Value => base.Value;
+
+    private NationalId(string value) : base(value) { }
+
+    public static Result<NationalId> Create(string value)
+    {
+        return new NationalId(value);
+    }
 }

@@ -2,10 +2,17 @@
 
 namespace Domain.ValueObjects;
 
-public class Address : SingleValueObject<string>
+public sealed class Address : SingleValueObject<Address, string>, ICreatableValueObject<Address, string>
 {
     [CustomMinLength(5)]
     [CustomMaxLength(200)]
     [DisplayName("آدرس")]
-    public override required string Value { get => base.Value; init => base.Value = value; }
+    public override string Value => base.Value;
+
+    private Address(string value) : base(value) { }
+
+    public static Result<Address> Create(string value)
+    {
+        return new Address(value);
+    }
 }

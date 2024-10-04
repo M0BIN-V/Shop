@@ -2,10 +2,17 @@
 
 namespace Domain.ValueObjects;
 
-public class Name : SingleValueObject<string>
+public sealed class Name : SingleValueObject<Name, string>, ICreatableValueObject<Name, string>
 {
     [CustomMinLength(3)]
     [CustomMaxLength(20)]
     [DisplayName("نام")]
-    public override required string Value { get => base.Value; init => base.Value = value; }
+    public override string Value => base.Value;
+
+    private Name(string value) : base(value) { }
+
+    public static Result<Name> Create(string value)
+    {
+        return new Name(value);
+    }
 }

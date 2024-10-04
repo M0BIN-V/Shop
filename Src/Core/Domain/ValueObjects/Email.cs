@@ -3,11 +3,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.ValueObjects;
 
-public class Email : SingleValueObject<string>
+public sealed class Email : SingleValueObject<Email, string>, ICreatableValueObject<Email, string>
 {
     [CustomMinLength(4)]
     [CustomMaxLength(255)]
-    [EmailAddress(ErrorMessage ="ایمل معتبر نیست.")]
+    [EmailAddress(ErrorMessage = "ایمل معتبر نیست.")]
     [DisplayName("ایمیل")]
-    public override required string Value { get => base.Value; init => base.Value = value; }
+    public override string Value => base.Value;
+
+    private Email(string value) : base(value) { }
+
+    public static Result<Email> Create(string value)
+    {
+        return new Email(value);
+    }
 }

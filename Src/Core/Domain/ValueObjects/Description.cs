@@ -2,9 +2,16 @@
 
 namespace Domain.ValueObjects;
 
-public class Description : SingleValueObject<string>
+public sealed class Description : SingleValueObject<Description, string>, ICreatableValueObject<Description, string>
 {
     [CustomMaxLength(500)]
     [DisplayName("توضیحات")]
-    public override required string Value { get => base.Value; init => base.Value = value; }
+    public override string Value => base.Value;
+
+    private Description(string value) : base(value) { }
+
+    public static Result<Description> Create(string value)
+    {
+        return new Description(value);
+    }
 }

@@ -2,9 +2,16 @@
 
 namespace Domain.ValueObjects;
 
-public class WebSiteAddress : SingleValueObject<string>
+public sealed class WebSiteAddress : SingleValueObject<WebSiteAddress, string>, ICreatableValueObject<WebSiteAddress, string>
 {
     [CustomMaxLength(255)]
     [DisplayName("ادرس وبسایت")]
-    public override required string Value { get => base.Value; init => base.Value = value; }
+    public override string Value => base.Value;
+
+    private WebSiteAddress(string value) : base(value) { }
+
+    public static Result<WebSiteAddress> Create(string value)
+    {
+        return new WebSiteAddress(value);
+    }
 }
