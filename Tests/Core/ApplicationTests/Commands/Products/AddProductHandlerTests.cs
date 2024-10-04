@@ -17,7 +17,7 @@ public class AddProductHandlerTests
     {
         var productDto = new AddProductDto()
         {
-            Name = new Name { Value = "MyProduct" },
+            Name = Name.Create("MyProduct")!,
             Amount = 10_000_000,
             StockQuantity = 1000
         };

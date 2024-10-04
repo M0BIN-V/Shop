@@ -8,7 +8,7 @@ public class SendOtpHandlerTest
     readonly Mock<ISmsService> _smsServiceMock = new();
     readonly SendOtpHandler _handler;
     readonly Mock<IOtpService> _otpServiceMock = new();
-    readonly PhoneNumber _phoneNumber = new() { Value = "09111111111" };
+    readonly PhoneNumber _phoneNumber = PhoneNumber.Create("09666666666")!;
 
     public SendOtpHandlerTest()
     {

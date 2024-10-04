@@ -1,5 +1,7 @@
 ﻿using Api.Common.Attributes;
 using Application.Commands.Auth;
+using Castle.Components.DictionaryAdapter.Xml;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers.Auth;
 
@@ -18,9 +20,9 @@ public class AuthController : ResultBaseController
     [ResultResponse(Status200OK)]
     public async Task<IActionResult> SendOtp(SendOtpRequest request)
     {
-        var phoneNumberValueObject = new PhoneNumber { Value = request.PhoneNumber };
+        var phoneNumberValueObject = PhoneNumber.Create(request.PhoneNumber);
 
-        var command = new SendOtpCommand(phoneNumberValueObject);
+        var command = new SendOtpCommand(phoneNumberValueObject!);
 
         var result = await _mediator.Send(command);
 
@@ -31,8 +33,7 @@ public class AuthController : ResultBaseController
     [ResultResponse<string>(Status200OK)]
     public async Task<IActionResult> LoginWithOtp(LoginWithOtpRequest request)
     {
-        var command = new LoginWithOtpCommand(
-            new PhoneNumber { Value = request.PhoneNumber }, request.Otp);
+        var command = new LoginWithOtpCommand(PhoneNumber.Create(request.PhoneNumber)!, request.Otp);
 
         var result = await _mediator.Send(command);
 

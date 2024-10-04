@@ -7,7 +7,7 @@ namespace PersistenceTests.Repositories.Read;
 public class ReadCustomerRepositoryTests : RepositoryTestsBase, IReadPersonRoleRepositoryTests
 {
     readonly ReadCustomersRepository _repository;
-    readonly PhoneNumber _phoneNumber = new() { Value = "09556565656" };
+    readonly PhoneNumber _phoneNumber = PhoneNumber.Create("09165565554")!;
     readonly Customer _customer;
 
     public ReadCustomerRepositoryTests()

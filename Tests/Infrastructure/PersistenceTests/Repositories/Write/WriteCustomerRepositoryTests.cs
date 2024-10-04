@@ -12,10 +12,7 @@ public class WriteCustomerRepositoryTests : RepositoryTestsBase, IWriteRepositor
     {
         PersonalInformation = new()
         {
-            PhoneNumber = new()
-            {
-                Value = "09136666666"
-            }
+            PhoneNumber = PhoneNumber.Create("09165555555")!
         }
     };
 

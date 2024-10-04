@@ -10,10 +10,9 @@ public class ReadProductRepositoryTests : RepositoryTestsBase, IReadRepositoryBa
     readonly ReadProductRepository _repository;
     readonly Product _product = new()
     {
-        Name = new Name { Value = "ali" },
+        Name = Name.Create("ali")!,
         StockQuantity = 20,
     };
-
 
     public ReadProductRepositoryTests()
     {

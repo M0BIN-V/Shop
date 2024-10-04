@@ -14,7 +14,7 @@ public class LoginWithOtpHandlerTest
     readonly Mock<IWriteCustomersRepository> _writeCustomerRepository = new();
     readonly Mock<IOtpService> _otpService = new();
     readonly Mock<IJwtService> _jwtService = new();
-    readonly PhoneNumber _phoneNumber = new() { Value = "09122245444" };
+    readonly PhoneNumber _phoneNumber = PhoneNumber.Create("09995666666")!;
     const string _requestOtp = "111111";
     readonly LoginWithOtpCommand _request;
 
